@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+  head
+    title Jade
+    style.
+      .col {
+      background : red
+      }
+  body
+    h1 Jade - node template engine
+    #container.col
+      p !{name}
+      p !{message}
+      p
+        | Jade is a terse and simple
+        | templating language with a
+        | strong focus on performance
+        | and powerful features.
