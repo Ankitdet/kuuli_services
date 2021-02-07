@@ -1,14 +1,11 @@
 const nodemailer = require('nodemailer');
 var jade = require('jade');
-const Fs = require('fs')
 const Path = require('path')
-const Axios = require('axios')
-
 
 const sendEmail = async function (req, res) {
     const { emailAddress, name } = req.body;
 
-    var template = jade.renderFile(__dirname + '/emailTemplate.jade',
+    var template = jade.renderFile(Path.resolve(__dirname, '../../' + '/views/emailTemplate.jade'),
         req.body
     );
 
@@ -50,30 +47,7 @@ const sendEmail = async function (req, res) {
 }
 
 const download = async () => {
-    const url = 'https://unsplash.com/photos/AaEQmoufHLk/download?force=true'
-    const path = Path.resolve(__dirname, 'images', 'code1.jpg')
-
-    // axios image download with response type "stream"
-    const response = await Axios({
-        method: 'GET',
-        url: url,
-        responseType: 'stream'
-    })
-
-    // pipe the result stream into a file on disc
-    response.data.pipe(Fs.createWriteStream(path))
-
-    // return a promise and resolve when download finishes
-    return new Promise((resolve, reject) => {
-        response.data.on('end', () => {
-            resolve()
-        })
-
-        response.data.on('error', () => {
-            reject()
-        })
-    })
-
+   // TODO
 }
 
 module.exports = {

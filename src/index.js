@@ -1,16 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-require('dotenv');
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
 const authorize = require("./utils/authorization-middleware");
 const config = require("./config/config");
 
-//build config from params
 const port = process.env.PORT || 5002;
 
-//setup app & its routes
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
@@ -18,8 +16,8 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 app.get("/token", (req, res) => {
     const payload = {
-        name: "Jimmy",
-        password : "Jimmy"
+        name: "Ankit",
+        password : "Detroja"
     };
     const token = jwt.sign(payload, config.JWT_SECRET, {
         expiresIn: config.JWT_EXPIRES_IN

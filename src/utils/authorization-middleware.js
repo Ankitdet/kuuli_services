@@ -3,7 +3,6 @@ const config = require("../config/config");
 
 module.exports = (credentials = []) => {
     return (req, res, next) => {
-        console.log("Authorization middleware");
         // Allow for a string OR array
         if (typeof credentials === "string") {
             credentials = [credentials];
@@ -17,14 +16,11 @@ module.exports = (credentials = []) => {
             // Validate JWT
             // Bearer yndujsoIn...
             const tokenBody = token.split(" ");
-            console.log(tokenBody[2]);
             jwt.verify(tokenBody[2], config.JWT_SECRET, (err, decoded) => {
                 if (err) {
                     console.log(`JWT Error: ${err}`);
                     return res.status(401).send("Error: Access Denied");
                 }
-                // No Error, JWT is good!
-
                 // Check for credentials being passed in
                 if (credentials.length > 0) {
                     if (
