@@ -8,20 +8,22 @@ npm install
 
 npm run dev
 
-#Run services in production
+# Run services in production
 
 npm start
 
 # Execute the services in Postman or any client application.
 
 1. GET http://localhost:5000/token
+
+**Request**
 Body :
 {
-username : <username>,
-password : <password>
+    username : [username],
+    password : [password]
 }
 
-Response :
+**Response**
 {
 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5raXQiLCJwYXNzd29yZCI6IkRldHJvamEiLCJpYXQiOjE2MTI3NTY4MDgsImV4cCI6MTYxMjc2MDQwOH0.QVHMXAv97HKSx1lIRNh8QO_yLtE1YWkQXw4Xe5yCoDA",
 "expiredIn": "1h"
@@ -29,21 +31,17 @@ Response :
 
 2. POST http://localhost:5000/user/email
 
-Header : Authorization Bearer [jwt_token]
+**Request**
+Authorization Bearer [jwt_token]
 Body :
 {
 emailAddress:'destination@gmail.com,
 name : Name of applicant
 }
 
-Repsonse :
-
+**Repsonse**
 { success: 'Email successfully sent', status: 200 }
-Or
-{ failed: 'Failed to send email on destination', status: 500 }
 
 3. GET http://localhost:5000/user/download
 
 Header : Authorization Bearer [jwt_token]
-
-file will donwload in 'resource'.
