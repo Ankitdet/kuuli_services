@@ -1,23 +1,27 @@
+require('dotenv').config();
+const https = require('https');
+const fs = require('fs');
 const nodemailer = require('nodemailer');
-var jade = require('jade');
-const Path = require('path')
+const jade = require('jade');
+const Path = require('path');
+
 
 const sendEmail = async function (req, res) {
     const { emailAddress, name } = req.body;
 
-    var template = jade.renderFile(Path.resolve(__dirname, '../../' + '/views/emailTemplate.jade'),
+    var template = jade.renderFile(Path.resolve(__dirname, '../../../' + '/views/emailTemplate.jade'),
         req.body
     );
 
     try {
         return new Promise((resolve, reject) => {
             const smtpTrans = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 465,
+                host: process.env.GMAIL_SERVICE_HOST || 'smtp.gmail.com',
+                port: process.env.GMAIL_SERVICE_PORT || 465,
                 secure: true,
                 auth: {
-                    user: 'apdetrojaa@gmail.com',
-                    pass: 'Ankit#2car'
+                    user: process.env.GMAIL_USER_NAME,
+                    pass: process.env.GMAIL_USER_PASSWORD
                 },
                 tls: {
                     rejectUnauthorized: false
@@ -25,7 +29,7 @@ const sendEmail = async function (req, res) {
             })
 
             const mailOptions = {
-                from: "apdetrojaa@gmail.com",
+                from: process.env.GMAIL_USER_NAME,
                 to: emailAddress,
                 subject: `Welcome Mail`,
                 html: template,
@@ -36,8 +40,8 @@ const sendEmail = async function (req, res) {
 
             smtpTrans.sendMail(mailOptions, (err, res) => {
                 err ?
-                    reject({ failed: 'failed' })
-                    : resolve({ ok: 'asdasdad' })
+                    reject({ failed: err, status: 500 })
+                    : resolve({ success: 'Email successfully sent', status: 200 })
             });
         });
 
@@ -46,11 +50,17 @@ const sendEmail = async function (req, res) {
     }
 }
 
-const download = async () => {
-   // TODO
+var downloadFile = async function (url, dest, cb) {
+    const file = fs.createWriteStream(dest);
+    https.get(url, function (response) {
+        response.pipe(file);
+        response.on('end', function () {
+            cb({success : 'downloding success..'});
+        })
+    })
 }
 
 module.exports = {
     sendMail: sendEmail,
-    download: download
+    download: downloadFile
 };

@@ -10,20 +10,21 @@ const config = require("./config/config");
 const port = process.env.PORT || 5002;
 
 const app = express();
-app.set("view engine","jade")
+app.set("view engine", "jade")
 app.use(cors());
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
-app.get("/token", (req, res) => {
+app.post("/token", (req, res) => {
+    const { username, password } = req.body;
     const payload = {
-        name: "Ankit",
-        password : "Detroja"
+        name: username,
+        password: password
     };
     const token = jwt.sign(payload, config.JWT_SECRET, {
         expiresIn: config.JWT_EXPIRES_IN
     });
-    res.send(token);
+    res.send({ token: token, expiredIn: config.JWT_EXPIRES_IN });
 });
 
 app.use(authorize());
