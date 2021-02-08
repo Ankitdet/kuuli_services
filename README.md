@@ -1,20 +1,20 @@
 # kuulie_services
 
-Install dependencies
+# Install dependencies
 
-# npm install
+npm install
 
-Run services locally
+# Run services locally
 
-# npm run dev
+npm run dev
 
-Run services in production
+#Run services in production
 
-# npm start
+npm start
 
-Execute the services in Postman or any client application.
+# Execute the services in Postman or any client application.
 
-# GET http://localhost:5000/token
+1. GET http://localhost:5000/token
 Body :
 {
 username : <username>,
@@ -27,23 +27,23 @@ Response :
 "expiredIn": "1h"
 }
 
-# 1. POST http://localhost:5000/user/email
+2. POST http://localhost:5000/user/email
 
-Header : Authorization Bearer <token>
+Header : Authorization Bearer [jwt_token]
 Body :
 {
 emailAddress:'destination@gmail.com,
 name : Name of applicant
 }
 
-# Repsonse :
+Repsonse :
 
 { success: 'Email successfully sent', status: 200 }
 Or
 { failed: 'Failed to send email on destination', status: 500 }
 
-# 2. GET http://localhost:5000/user/download
+3. GET http://localhost:5000/user/download
 
-Header : Authorization Bearer <token>
+Header : Authorization Bearer [jwt_token]
 
 file will donwload in 'resource'.
