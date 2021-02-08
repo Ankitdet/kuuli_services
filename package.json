@@ -14,14 +14,10 @@
     "express": "^4.16.4",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
     "nodemailer": "^6.4.17",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0"
-=======
-    "nodemailer": "^6.4.17"
->>>>>>> 3bb64d79d18807d2de9bc33b9d3636720012cfe5
   },
   "devDependencies": {
     "mkdirp": "^1.0.3",
