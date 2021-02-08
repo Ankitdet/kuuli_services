@@ -48,7 +48,6 @@ const sendEmail = async function (req, res) {
 
     } catch (error) {
         logger.error(`Error while sending mail ${JSON.stringify(error)}`);
-        console.log(error);
     }
 }
 
