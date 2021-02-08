@@ -9,23 +9,19 @@
   },
   "author": "ankitdetroja",
   "dependencies": {
-    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "email-templates": "^8.0.3",
     "express": "^4.16.4",
     "jade": "^1.11.0",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.4.17",
-    "nodemailer-express-handlebars": "^4.0.0",
-    "nodemailer-handlebars": "^1.0.1",
-    "swagger-ui-express": "^4.1.4",
-    "yargs": "^14.2.1"
+    "swagger-ui-express": "^4.1.6",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "devDependencies": {
     "mkdirp": "^1.0.3",
     "node-fetch": "^2.3.0",
-    "nodemon": "^2.0.4",
-    "rimraf": "^3.0.2"
+    "nodemon": "^2.0.4"
   }
 }

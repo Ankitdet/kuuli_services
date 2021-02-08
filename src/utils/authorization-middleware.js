@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const logger = require("./logger");
 
 module.exports = (credentials = []) => {
     return (req, res, next) => {
@@ -18,7 +19,7 @@ module.exports = (credentials = []) => {
             const tokenBody = token.split(" ");
             jwt.verify(tokenBody[2], config.JWT_SECRET, (err, decoded) => {
                 if (err) {
-                    console.log(`JWT Error: ${err}`);
+                    logger.error(`Error while fetching JWT token ${err}`)
                     return res.status(401).send("Error: Access Denied");
                 }
                 // Check for credentials being passed in

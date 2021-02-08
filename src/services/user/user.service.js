@@ -4,12 +4,13 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 const jade = require('jade');
 const Path = require('path');
+const logger = require('../../utils/logger');
 
 
 const sendEmail = async function (req, res) {
     const { emailAddress, name } = req.body;
 
-    var template = jade.renderFile(Path.resolve(__dirname, '../../../' + '/views/emailTemplate.jade'),
+    var template = jade.renderFile(Path.resolve(__dirname, '../../../' + '/views/email.jade'),
         req.body
     );
 
@@ -46,6 +47,7 @@ const sendEmail = async function (req, res) {
         });
 
     } catch (error) {
+        logger.error(`Error while sending mail ${JSON.stringify(error)}`);
         console.log(error);
     }
 }

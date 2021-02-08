@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
 const authorize = require("./utils/authorization-middleware");
 const config = require("./config/config");
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('../swagger.json');
 
 const port = process.env.PORT || 5002;
 
@@ -27,15 +29,20 @@ app.post("/token", (req, res) => {
     res.send({ token: token, expiredIn: config.JWT_EXPIRES_IN });
 });
 
+// Swagger configuration
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Validate Request
 app.use(authorize());
 
 const routes = require('./routes/index.route');
+const logger = require('./utils/logger');
 app.use(routes);
 
 
-//start http server
+//Start http server
 const httpServer = http.createServer(app);
 httpServer.listen(port);
-console.log(`Server listening at port ${port}`);
+logger.info(`Server listening at port ${port}`);
 
 module.exports = { app };
