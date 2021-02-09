@@ -1,9 +1,9 @@
 require('dotenv').config();
 const https = require('https');
 const fs = require('fs');
-const nodemailer = require('nodemailer');
 const jade = require('jade');
 const Path = require('path');
+var nodemailerConfig = require('../../utils/email/nodemailer_config');
 const logger = require('../../utils/logger');
 
 
@@ -13,38 +13,18 @@ const sendEmail = async function (req, res) {
     var template = jade.renderFile(Path.resolve(__dirname, '../../../' + '/views/email.jade'),
         req.body
     );
-
     try {
+        var message = {
+            to: emailAddress,
+            subject: `welcome ${name} Test Message`,
+            html: template
+        };
         return new Promise((resolve, reject) => {
-            const smtpTrans = nodemailer.createTransport({
-                host: process.env.GMAIL_SERVICE_HOST || 'smtp.gmail.com',
-                port: process.env.GMAIL_SERVICE_PORT || 465,
-                secure: true,
-                auth: {
-                    user: process.env.GMAIL_USER_NAME,
-                    pass: process.env.GMAIL_USER_PASSWORD
-                },
-                tls: {
-                    rejectUnauthorized: false
-                }
-            })
-
-            const mailOptions = {
-                from: process.env.GMAIL_USER_NAME,
-                to: emailAddress,
-                subject: `Welcome Mail`,
-                html: template,
-                context: {
-                    name: name
-                }
-            }
-
-            smtpTrans.sendMail(mailOptions, (err, res) => {
-                err ?
-                    reject({ failed: err, status: 500 })
-                    : resolve({ success: 'Email successfully sent', status: 200 })
+            nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
+                if (err) reject({ failed: err });
+                resolve({ success: 'email send successfuly' })
             });
-        });
+        })
 
     } catch (error) {
         logger.error(`Error while sending mail ${JSON.stringify(error)}`);
@@ -56,7 +36,7 @@ var downloadFile = async function (url, dest, cb) {
     https.get(url, function (response) {
         response.pipe(file);
         response.on('end', function () {
-            cb({success : 'downloding success..'});
+            cb({ success: 'downloding success..' });
         })
     })
 }
