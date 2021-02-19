@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
-const logger = require("./logger");
+const logger = require("../logger/logger");
 
 module.exports = (credentials = []) => {
     return (req, res, next) => {

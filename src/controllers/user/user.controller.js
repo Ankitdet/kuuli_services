@@ -1,5 +1,5 @@
 const userService = require('../../services/user/user.service');
-const logger = require('../../utils/logger');
+const logger = require('../../logger/logger');
 require('dotenv').config();
 
 const sendMail = function (req, res) {
