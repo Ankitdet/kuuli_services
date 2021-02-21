@@ -17,7 +17,7 @@ const sendEmail = async function (req, res) {
     );
 
     // https://github.com/jkasun/sa-node-postgres
-    let query = `INSERT INTO users(name, email, company, created_on) VALUES ('${name}', '${emailAddress}', '${company}', '${moment().format()}');` ;
+    let query = `INSERT INTO users(name, email, company, created_on) VALUES ('${name}', '${emailAddress}', '${company}', '${moment().format('dd-mmm-yyyy hh:mm:ss')}');`;
 
     return executeQuery(query).then(() => {
         try {
@@ -49,7 +49,19 @@ var downloadFile = async function (url, dest, cb) {
     })
 }
 
+const contactUs = (req, res) => {
+    const { email, name, message, mobile } = req.body;
+
+    let query = `INSERT INTO contactus(name, email, message, mobile, created_on) 
+                 VALUES ('${name}', '${email}', '${message}', '${mobile}, '${moment().format('dd-mmm-yyyy hh:mm:ss')}');`;
+
+    return executeQuery(query).then(() => {
+        return ({ status: 200, message: 'Our team will get back to you within 2 business days.' });
+    });
+}
+
 module.exports = {
     sendMail: sendEmail,
+    contactUs: contactUs,
     download: downloadFile
 };

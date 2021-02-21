@@ -5,8 +5,8 @@ require('dotenv').config();
 const sendMail = function (req, res) {
     logger.info(`Sending email to ${JSON.stringify(req.body)}`)
     userService.sendMail(req, res).then((response) => {
-         res.send(response);
-     });
+        res.send(response);
+    });
 }
 
 const download = function (req, res) {
@@ -16,7 +16,15 @@ const download = function (req, res) {
     });
 }
 
+const contactUs = (req, res) => {
+    logger.info(`Contact to customer with data ${JSON.stringify(req.body)}`);
+    userService.contactUs(req, res).then((response) => {
+        res.send(response);
+    });
+}
+
 module.exports = {
     sendMail,
+    contactUs,
     download
 };

@@ -10,6 +10,8 @@ const pool = new Pool(config)
 
 const query = `
 CREATE SEQUENCE IF NOT EXISTS user_id_seq;
+CREATE SEQUENCE IF NOT EXISTS contactus_id_seq;
+
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" INTEGER NOT NULL DEFAULT nextval('user_id_seq'),
 	"name" TEXT NOT NULL,
@@ -17,12 +19,17 @@ CREATE TABLE IF NOT EXISTS "users" (
     "company" CHAR(50) NOT NULL,
 	"created_on" DATE NOT NULL,
 	PRIMARY KEY ("id")
-)
-;
-COMMENT ON COLUMN "users"."id" IS '';
-COMMENT ON COLUMN "users"."name" IS '';
-COMMENT ON COLUMN "users"."email" IS '';
-COMMENT ON COLUMN "users"."created_on" IS '';
+);
+
+CREATE TABLE IF NOT EXISTS "contactus" (
+	"id" INTEGER NOT NULL DEFAULT nextval('contactus_id_seq'),
+	"name" VARCHAR(500) NOT NULL,
+	"email" VARCHAR(500) NOT NULL,
+	"mobile" INTEGER NOT NULL,
+	"message" TEXT NOT NULL,
+    "created_on" DATE NOT NULL,
+    PRIMARY KEY ("id")
+);
 `
 
 pool.connect((err, client, done) => {
