@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "create-table" : "node src/db/create-table.js"
+    "create-table": "node src/db/create-table.js"
   },
   "author": "ankitdetroja",
   "dependencies": {
@@ -25,7 +25,8 @@
     "postgresql": "0.0.1",
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.0"
+    "winston-daily-rotate-file": "^4.5.0",
+    "xlstream": "^2.3.2"
   },
   "devDependencies": {
     "mkdirp": "^1.0.3",

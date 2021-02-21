@@ -17,7 +17,7 @@ const sendEmail = async function (req, res) {
     );
 
     // https://github.com/jkasun/sa-node-postgres
-    let query = `INSERT INTO users(name, email, company, created_on) VALUES ('${name}', '${emailAddress}', '${company}', '${moment().format('dd-mmm-yyyy hh:mm:ss')}');`;
+    let query = `INSERT INTO users(name, email, company, created_on) VALUES ('${name}', '${emailAddress}', '${company}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`;
 
     return executeQuery(query).then(() => {
         try {
@@ -28,8 +28,8 @@ const sendEmail = async function (req, res) {
             };
             return new Promise((resolve, reject) => {
                 nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
-                    if (err) reject({ failed: err });
-                    resolve({ success: 'email send successfully' })
+                    if (err) reject({ status: 500, failed: err });
+                    resolve({ status: 200, success: 'Email sent successfully' })
                 });
             })
 
@@ -53,10 +53,10 @@ const contactUs = (req, res) => {
     const { email, name, message, mobile } = req.body;
 
     let query = `INSERT INTO contactus(name, email, message, mobile, created_on) 
-                 VALUES ('${name}', '${email}', '${message}', '${mobile}, '${moment().format('dd-mmm-yyyy hh:mm:ss')}');`;
+                VALUES ('${name}', '${email}', '${message}', '${mobile}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`;
 
-    return executeQuery(query).then(() => {
-        return ({ status: 200, message: 'Our team will get back to you within 2 business days.' });
+    return executeQuery(query).then((data) => {
+        return ({ status: 200, message: 'Data submitted successfully.' });
     });
 }
 

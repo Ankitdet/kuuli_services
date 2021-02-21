@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"name" TEXT NOT NULL,
 	"email" CHAR(50) NOT NULL,
     "company" CHAR(50) NOT NULL,
-	"created_on" DATE NOT NULL,
+	"created_on" TIMESTAMP NOT NULL,
 	PRIMARY KEY ("id")
 );
 
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS "contactus" (
 	"id" INTEGER NOT NULL DEFAULT nextval('contactus_id_seq'),
 	"name" VARCHAR(500) NOT NULL,
 	"email" VARCHAR(500) NOT NULL,
-	"mobile" INTEGER NOT NULL,
+	"mobile" VARCHAR(50) NOT NULL,
 	"message" TEXT NOT NULL,
-    "created_on" DATE NOT NULL,
+    "created_on" TIMESTAMP NOT NULL,
     PRIMARY KEY ("id")
 );
 `
