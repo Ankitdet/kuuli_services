@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "My User Project CRUD",
-    "description": "My User Project Application API",
+    "title": "Kuulie Services",
+    "description": "Contract to enable kuulie service",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -21,7 +21,40 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
-    "/user/download": {
+    "/user/v1/sendMail": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Send Email to contacted user.",
+        "requestBody": {
+          "emailAddress": "xyz@gmail.com",
+          "name": "Your name",
+          "company": "Company Name"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/user/v1/contactus": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Download file from server to currect path",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/user/v1/download": {
       "get": {
         "tags": ["Users"],
         "summary": "Download file from server to currect path",

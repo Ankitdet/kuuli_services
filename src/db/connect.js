@@ -15,7 +15,7 @@ pool.connect((err, client, done) => {
             console.error(err);
             return;
         }
-        console.log('Connection successful');
+        console.log('Connection successful.');
     });
 });
 
