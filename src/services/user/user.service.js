@@ -44,7 +44,7 @@ var downloadFile = async function (url, dest, cb) {
     https.get(url, function (response) {
         response.pipe(file);
         response.on('end', function () {
-            cb({ success: 'downloding success..' });
+            cb({ status: 200, url: url });
         })
     })
 }

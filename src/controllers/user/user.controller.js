@@ -11,8 +11,8 @@ const sendMail = function (req, res) {
 
 const download = function (req, res) {
     logger.info(`Downloading file`)
-    userService.download(process.env.FILE_URL, './resources/file.png', (da) => {
-        res.send(da)
+    userService.download(process.env.FILE_URL, './resources/file.png', (data) => {
+        res.send(data)
     });
 }
 
