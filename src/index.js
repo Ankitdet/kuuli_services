@@ -10,15 +10,16 @@ const authConfig = require("./auth_config.json");
 const swaggerUi = require('swagger-ui-express'), swaggerDocument = require('../swagger.json');
 
 const port = process.env.PORT || 5002;
+
 const app = express();
+app.use(cors({
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+}));
 app.use(helmet());
 app.set("view engine", "jade")
-app.all('*', function (req, res, next) {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-    next();
-});
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
