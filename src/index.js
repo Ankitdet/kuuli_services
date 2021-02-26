@@ -19,7 +19,7 @@ app.use(cors({
     "optionsSuccessStatus": 204
 }));
 app.use(helmet());
-app.set("view engine", "jade")
+app.set("view engine", "pug")
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))

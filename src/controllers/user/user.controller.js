@@ -9,10 +9,10 @@ const sendMail = function (req, res) {
     });
 }
 
-const download = function (req, res) {
-    logger.info(`Downloading file`)
-    userService.download(process.env.FILE_URL, './resources/file.png', (data) => {
-        res.send(data)
+const sendLink = function (req, res) {
+    logger.info(`Sending downloadind link via Mail`)
+    userService.sendLink(req,res).then((response) => {
+        res.send(response)
     });
 }
 
@@ -26,5 +26,5 @@ const contactUs = (req, res) => {
 module.exports = {
     sendMail,
     contactUs,
-    download
+    sendLink
 };
