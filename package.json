@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Kuulie On demand service ",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --watch . --exec babel-node -- start",
     "start": "node start.js",
