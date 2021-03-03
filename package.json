@@ -29,7 +29,8 @@
     "swagger-ui-express": "^4.1.6",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.0",
-    "xlstream": "^2.3.2"
+    "xlstream": "^2.3.2",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -39,7 +40,6 @@
     "babel-register": "^6.26.0",
     "babel-watch": "^7.4.0",
     "mkdirp": "^1.0.3",
-    "node-fetch": "^2.3.0",
-    "nodemon": "^2.0.4"
+    "node-fetch": "^2.3.0"
   }
 }
