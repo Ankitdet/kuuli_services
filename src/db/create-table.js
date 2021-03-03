@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS "customer_forecast" (
 	"remarks" VARCHAR(500) NOT NULL,
 	"heavy_weight" VARCHAR(500) NOT NULL,
 	"forward_console" BOOLEAN NOT NULL,
-	"created_on" TIMESTAMP NOT NULL,
+	"created_on" TIMESTAMP NULL,
 	"updated_on" TIMESTAMP NULL,
 	PRIMARY KEY ("f_id")
 );
