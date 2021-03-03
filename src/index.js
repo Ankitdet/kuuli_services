@@ -1,6 +1,5 @@
 // 206710310000185
 require('dotenv').config();
-import 'babel-polyfill';
 const express = require('express');
 const http = require('http');
 const cors = require('cors');

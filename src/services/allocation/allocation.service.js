@@ -4,7 +4,7 @@ const { default: Forecaster } = require('../../modals/forecaster');
 const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 const moment = require('moment');
 
-export const createForecast = async(req, res) => {
+const createForecast = async(req, res) => {
 
     // Convert json string to js object
     let forecast = new Forecaster(JSON.parse(JSON.stringify(req.body)));
@@ -30,9 +30,13 @@ export const createForecast = async(req, res) => {
     }
 }
 
-export const updateCustomerForecast = async(req, res) => { 
+const updateCustomerForecast = async(req, res) => { 
 
 }
 
-export const deleteCustomerForecast = async(req,res) => {
+const deleteCustomerForecast = async(req,res) => {
 }
+
+module.exports = {
+    createForecast: createForecast,
+};

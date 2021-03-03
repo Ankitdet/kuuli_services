@@ -1,4 +1,4 @@
-export default function Forecaster(obj) {
+function Forecaster(obj) {
 
     this.validWeek;
     this.validYear;
@@ -19,4 +19,7 @@ export default function Forecaster(obj) {
     this.getCarrierDetails = function()  {
        return this.carrierDetails;
     }
+}
+module.exports = {
+    Forecaster
 }

@@ -16,3 +16,6 @@ function Carrier(obj) {
     }
 }
 
+module.exports = {
+    Carrier
+}
