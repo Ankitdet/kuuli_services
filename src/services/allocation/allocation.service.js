@@ -35,5 +35,4 @@ export const updateCustomerForecast = async(req, res) => {
 }
 
 export const deleteCustomerForecast = async(req,res) => {
-
 }
