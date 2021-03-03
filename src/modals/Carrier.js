@@ -16,6 +16,4 @@ function Carrier(obj) {
     }
 }
 
-module.exports = {
-    Carrier
-}
+module.exports.Carrier = Carrier

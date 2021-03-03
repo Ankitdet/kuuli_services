@@ -16,8 +16,8 @@ function Forecaster(obj) {
         this[prop] = obj[prop];
     }
 
-    this.getCarrierDetails = function()  {
-       return this.carrierDetails;
+    this.getCarrierDetails = function () {
+        return this.carrierDetails;
     }
 }
 module.exports = {

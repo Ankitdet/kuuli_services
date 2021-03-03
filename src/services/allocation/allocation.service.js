@@ -1,8 +1,8 @@
 require('dotenv').config();
 const executeQuery = require('../../db/connect');
-const { default: Forecaster } = require('../../modals/forecaster');
 const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 const moment = require('moment');
+const { Forecaster } = require('../../modals/Forecaster');
 
 const createForecast = async(req, res) => {
 
