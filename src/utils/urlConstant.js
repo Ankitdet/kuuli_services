@@ -8,3 +8,4 @@ module.exports.sendLink = "/sendLink";
 //Allocation Endpoint
 module.exports.allowcationBasePath = "/allocation/v1";
 module.exports.createForecast = "/forecast/create" ;
+module.exports.createCarrier = "/carrier/create" ;

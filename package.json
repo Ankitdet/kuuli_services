@@ -7,6 +7,7 @@
     "dev": "nodemon start.js",
     "start": "node start.js",
     "create-table": "node src/db/create-table.js",
+    "drop-table" : "node src/db/drop-table.js",
     "tableQuery": "concurrently \"node src/db/create-table.js\" \"node script-2.js\" \"node script-3.js\" \"node app.js\""
   },
   "author": "ankitdetroja",
