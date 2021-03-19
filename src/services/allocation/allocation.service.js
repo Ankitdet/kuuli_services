@@ -42,8 +42,14 @@ const carrierAllocation = async (req, res) => {
     // Convert json string to js object
     let forecast = new CarrierAllocation(JSON.parse(JSON.stringify(req.body)));
 
-    let query = `INSERT INTO carrier_allocation("allocation_type", "allocation_level", "route", "owner", "from_year", "from_week", "to_year", "to_week", "generic_nac", "commitment", "status", "origin_shipment_type", "dest_shipment_type", "place_of_receipt", "place_of_delivery", "mother_vessel_discharge_point", "mother_vessel_load_point", "carrier_name", "customers", "carrier_service", "tarrif_ref", "equipment_type", "equipment_size", "space_status", "allocation_per_week", "total_allocation", "commodity", "remarks", "heavy_weight", "paying_cargo", "overbooking_allowance", "created_on") 
-    VALUES ('q', 'qq', 'qq', 'qq', 'qqq', 'qq', 'qqq', 'qqwq', 'qwqw', 'qw', 'qw', 'qw', 'qw', 'w', 'wq', 'w', 'qw', 'ww', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}')`;
+    let query = `INSERT INTO carrier_allocation("allocation_type", "allocation_level", "route", "owner", "from_year", "from_week", "to_year", "to_week", "generic_nac", "commitment", "status", "origin_shipment_type", "dest_shipment_type", "place_of_receipt", "place_of_delivery", "mother_vessel_discharge_point", "mother_vessel_load_point", 
+    "carrier_name", "customers", "carrier_service", "tarrif_ref", "equipment_type", "equipment_size", "space_status", "allocation_per_week", "total_allocation", "commodity", "remarks", "heavy_weight", "paying_cargo", "overbooking_allowance", "created_on") 
+    VALUES ('${forecast.allocationType}', '${forecast.allocationLevel}', '${forecast.route}', '${forecast.owner}', '${forecast.fromYear}', '${forecast.fromWeek}', '${forecast.toYear}', '${forecast.toWeek}', '${forecast.genericaNAC}', '${forecast.status}', '${forecast.commitment}', '${forecast.originShipmentType}',
+    '${forecast.destinationShipmentType}', '${forecast.placeOfReceipt}', '${forecast.placeOfDelivery}', '${forecast.motherVesselDischargePoint}', 
+    '${forecast.motherVesselLoadPoint}', '${forecast.getCarrierAllocationDetails().name}', '${forecast.getCarrierAllocationDetails().customers}', '${forecast.getCarrierAllocationDetails().carrierService}', 
+    '${forecast.getCarrierAllocationDetails().tarrifRef}', '${forecast.getCarrierAllocationDetails().equipmentType}', '${forecast.getCarrierAllocationDetails().equipmentSize}', '${forecast.getCarrierAllocationDetails().spaceStatus}', 
+    '${forecast.getCarrierAllocationDetails().allocationPerWeek}', '${forecast.getCarrierAllocationDetails().totalAllocation}', '${forecast.getCarrierAllocationDetails().commodity}', '${forecast.getCarrierAllocationDetails().remarks}', '${forecast.getCarrierAllocationDetails().heavyWeight}', '${forecast.getCarrierAllocationDetails().payingCargo}', '${forecast.getCarrierAllocationDetails().overbookingAllowance}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}')`;
+    
     try {
         return executeQuery(query).then((data) => {
             res.status(OK).send({ message: 'carrier allocation successfully created.' });

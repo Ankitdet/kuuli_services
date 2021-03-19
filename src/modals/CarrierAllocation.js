@@ -9,6 +9,7 @@ function CarrierAllocation(obj) {
     this.toYear;
     this.toWeek;
     this.genericaNAC;
+    this.status;
     this.commitment;
     this.originShipmentType;
     this.destinationShipmentType;
