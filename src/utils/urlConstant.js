@@ -9,3 +9,7 @@ module.exports.sendLink = "/sendLink";
 module.exports.allowcationBasePath = "/allocation/v1";
 module.exports.createForecast = "/forecast/create" ;
 module.exports.createCarrier = "/carrier/create" ;
+
+
+//Dashboard Endpoint
+module.exports.dashboardBasePath = "/dashboard"
