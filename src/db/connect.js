@@ -21,9 +21,10 @@ pool.connect((err, client, done) => {
 
 const executeQuery = async (query) => {
     try {
-        const client = await pool.connect()
-        await client.query(query);
+        const client = await pool.connect();
+        let data = await client.query(query);
         client.release()
+        return data;
     } catch (err) {
         return err;
     }

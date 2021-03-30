@@ -4,7 +4,7 @@ const { parse } = require('pg-connection-string')
 const config = parse(process.env.DATABASE_URL)
 
 config.ssl = {
-    rejectUnauthorized: false
+	rejectUnauthorized: false
 }
 const pool = new Pool(config)
 
@@ -13,6 +13,7 @@ CREATE SEQUENCE IF NOT EXISTS user_id_seq;
 CREATE SEQUENCE IF NOT EXISTS contactus_id_seq;
 CREATE SEQUENCE IF NOT EXISTS customer_forecast_id_seq;
 CREATE SEQUENCE IF NOT EXISTS carrier_allocation_id_seq;
+CREATE SEQUENCE IF NOT EXISTS quotation_id_seq;
 
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" INTEGER NOT NULL DEFAULT nextval('user_id_seq'),
@@ -98,14 +99,30 @@ CREATE TABLE IF NOT EXISTS "carrier_allocation" (
 	PRIMARY KEY ("c_id")
 );
 
+CREATE TABLE IF NOT EXISTS "quotation" (
+	"q_id" INTEGER NOT NULL DEFAULT nextval('quotation_id_seq'),
+	"origin" VARCHAR(500) NOT NULL,
+	"destination" VARCHAR(500) NOT NULL,
+	"container_name" VARCHAR(500) NOT NULL,
+	"container_type" VARCHAR(500) NOT NULL,
+	"container_size" VARCHAR(500) NOT NULL,
+	"container_quantity" VARCHAR(500) NOT NULL,
+	"container_weight" VARCHAR(500) NOT NULL,
+	"cargo_ready_date" TIMESTAMP NOT NULL,
+	"incoterms"  VARCHAR(500) NOT NULL,
+	"type" VARCHAR(500) NOT NULL,
+	"created_on" TIMESTAMP NULL,
+	"updated_on" TIMESTAMP NULL,
+	PRIMARY KEY ("q_id")
+);
 `
 
 pool.connect((err, client, done) => {
-    client.query(query, (err, res) => {
-        console.log(err, res)
-        client.end()
-        console.log('Table Created Successfully.');
-    });
+	client.query(query, (err, res) => {
+		console.log(err, res)
+		client.end()
+		console.log('Table Created Successfully.');
+	});
 });
 
 module.exports = pool;

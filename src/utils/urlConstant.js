@@ -13,3 +13,8 @@ module.exports.createCarrier = "/carrier/create" ;
 
 //Dashboard Endpoint
 module.exports.dashboardBasePath = "/dashboard"
+module.exports.QuotationBasePath = "/quotation/fetch"
+module.exports.QuotationBasePathById = "/quotation/fetchById"
+module.exports.QuotationCreateBasePath = "/quotation/create"
+module.exports.QuotationUpdateBasePath = "/quotation/update"
+
