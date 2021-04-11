@@ -2,6 +2,7 @@
 require('dotenv').config();
 var csv = require('csv-parser')
 var fs = require('fs');
+const path = require('path');
 const moment = require('moment');
 const executeQuery = require('../../db/connect');
 var readLine = require('readline');
@@ -72,10 +73,9 @@ const fetchQuotationById = async (req, res) => {
     }
 }
 
-
+var data = [] ;
 function fnc(line, number) {
-    console.log('line:-', line)
-    console.log('number:', number)
+    data.push(line);
 }
 
 function readFromN2M(fileName, n, m, func) {
@@ -96,11 +96,12 @@ function readFromN2M(fileName, n, m, func) {
                 });
             }
         ).on('end', () => {
+            console.log(data);
             console.log('Data loaded');
         })
 }
 
-// readFromN2M(path.resolve(__dirname) + '../../../../resources/sample_data.csv', 90, 100, fnc);
+readFromN2M(path.resolve(__dirname) + '../../../../resources/BTC-USD.csv', 1, 1000, fnc);
 
 
 module.exports = {
