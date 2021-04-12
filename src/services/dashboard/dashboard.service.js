@@ -101,7 +101,7 @@ function readFromN2M(fileName, n, m, func) {
         })
 }
 
-readFromN2M(path.resolve(__dirname) + '../../../../resources/BTC-USD.csv', 1, 1000, fnc);
+// readFromN2M(path.resolve(__dirname) + '../../../../resources/BTC-USD.csv', 1, 1000, fnc);
 
 
 module.exports = {

@@ -14,7 +14,24 @@ const createCarrier = function (req, res) {
         res.send(response);
     })
 }
+
+const carrierAllocationNew = function (req, res) {
+    logger.info(`Carrier Allocation New API called using data: ${JSON.stringify(req.body)}`)
+    allocationService.carrierAllocationNew(req, res).then((response) => {
+        res.send(response);
+    })
+}
+
+const fetchAllCarrierAllocation = function (req, res) {
+    logger.info(`Carrier get data`)
+    allocationService.fetchAllCarrierAllocation(req, res).then((response) => {
+        res.send(response);
+    })
+}
+
 module.exports = {
     createForecaster,
-    createCarrier
+    createCarrier,
+    carrierAllocationNew,
+    fetchAllCarrierAllocation
 };

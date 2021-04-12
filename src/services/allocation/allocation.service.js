@@ -49,7 +49,7 @@ const carrierAllocation = async (req, res) => {
     '${forecast.motherVesselLoadPoint}', '${forecast.getCarrierAllocationDetails().name}', '${forecast.getCarrierAllocationDetails().customers}', '${forecast.getCarrierAllocationDetails().carrierService}', 
     '${forecast.getCarrierAllocationDetails().tarrifRef}', '${forecast.getCarrierAllocationDetails().equipmentType}', '${forecast.getCarrierAllocationDetails().equipmentSize}', '${forecast.getCarrierAllocationDetails().spaceStatus}', 
     '${forecast.getCarrierAllocationDetails().allocationPerWeek}', '${forecast.getCarrierAllocationDetails().totalAllocation}', '${forecast.getCarrierAllocationDetails().commodity}', '${forecast.getCarrierAllocationDetails().remarks}', '${forecast.getCarrierAllocationDetails().heavyWeight}', '${forecast.getCarrierAllocationDetails().payingCargo}', '${forecast.getCarrierAllocationDetails().overbookingAllowance}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}')`;
-    
+
     try {
         return executeQuery(query).then((data) => {
             res.status(OK).send({ message: 'carrier allocation successfully created.' });
@@ -59,8 +59,40 @@ const carrierAllocation = async (req, res) => {
     }
 }
 
+const carrierAllocationNew = async (req, res) => {
+
+    const { containerType, containerName, service, supplier, origin, destination, sailing, type, totalAllocatedSpace, startDate, endDate } = req.body;
+
+    let query = `INSERT INTO carrier_allocation_new("container_type", "container_name", "service", "supplier", "origin", 
+    "destination", "sailing", "type", "total_allocated_space", "start_date", "end_date", "created_on") 
+    VALUES ('${containerType}','${containerName}','${service}','${supplier}','${origin}','${destination}',
+    '${sailing}', '${type}', '${totalAllocatedSpace}', '${moment(startDate).format('YYYY-MM-DD HH:mm:ss')}','${moment(endDate).format('YYYY-MM-DD HH:mm:ss')}' 
+    ,'${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}') RETURNING ca_id`;
+
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ ca_id: data.rows[0].ca_id, message: 'carrier allocation successfully created.' });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+
+const fetchAllCarrierAllocation = async (req, res) => {
+    let query = `SELECT * from carrier_allocation_new`;
+
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ data: data.rows, message: 'feched.' });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
 
 module.exports = {
     createForecast: createForecast,
-    carrierAllocation
+    carrierAllocation,
+    carrierAllocationNew,
+    fetchAllCarrierAllocation
 };
