@@ -90,9 +90,103 @@ const fetchAllCarrierAllocation = async (req, res) => {
     }
 }
 
+const carrierAllocationNewDefineTargetValues = async (req, res) => {
+
+    const { caId,
+        week_01, week_02, week_03, week_04, week_05, week_06, week_07, week_08, week_09, week_10,
+        week_11, week_12, week_13, week_14, week_15, week_16, week_17, week_18, week_19, week_20,
+        week_21, week_22, week_23, week_24, week_25, week_26, week_27, week_28, week_29, week_30,
+        week_31, week_32, week_33, week_34, week_35, week_36, week_37, week_38, week_39, week_40,
+        week_41, week_42, week_43, week_44, week_45, week_46, week_47, week_48, week_49, week_50,
+        week_51, week_52 } = req.body;
+
+    let query = `INSERT INTO target_values("ca_id", "week_1", "week_2", "week_3", "week_4","week_5", "week_6", "week_7", "week_8","week_9", "week_10", 
+    "week_11", "week_12", "week_13", "week_14","week_15", "week_16", "week_17", "week_18","week_19", "week_20",
+    "week_21", "week_22", "week_23", "week_24","week_25", "week_26", "week_27", "week_28","week_29", "week_30", 
+    "week_31", "week_32", "week_33", "week_34","week_35", "week_36", "week_37", "week_38","week_39", "week_40", 
+    "week_41", "week_42", "week_43", "week_44","week_45", "week_46", "week_47", "week_48","week_49", "week_50", 
+    "week_51", "week_52", "created_on") 
+    VALUES ('${caId}','${week_01}','${week_02}','${week_03}','${week_04}','${week_05}','${week_06}','${week_07}','${week_08}','${week_09}','${week_10}',
+    '${week_11}','${week_12}','${week_13}','${week_14}','${week_15}','${week_16}','${week_17}','${week_18}','${week_19}','${week_20}',
+    '${week_21}','${week_22}','${week_23}','${week_24}','${week_25}','${week_26}','${week_27}','${week_28}','${week_29}','${week_30}',
+    '${week_31}','${week_32}','${week_33}','${week_34}','${week_35}','${week_36}','${week_37}','${week_38}','${week_39}','${week_40}'
+    ,'${week_41}','${week_42}','${week_43}','${week_44}','${week_45}','${week_46}','${week_47}','${week_48}','${week_49}','${week_50}'
+    ,'${week_51}','${week_52}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`
+
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ message: `target values successfully created for caId ${caId}` });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+
+const getWeekStartEnd = async (req, res) => {
+
+    Date.prototype.getWeek = function () {
+        var onejan = new Date(this.getFullYear(), 0, 1);
+        var today = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+        var dayOfYear = ((today - onejan + 86400000) / 86400000);
+        return Math.ceil(dayOfYear / 7)
+    };
+
+    const caId = req.query.caId;
+    let query = `SELECT * from target_values where ca_id=${caId}`;
+
+    try {
+        return executeQuery(query).then((data01) => {
+            console.log('data01', data01.rows.length);
+            if (data01.rows.length > 0) {
+                res.status(OK).send({ data: data01.rows, message: 'feched.' });
+            } else {
+
+                let query = `SELECT start_date, end_date from carrier_allocation_new where ca_id=${caId}`;
+                return executeQuery(query).then((data) => {
+                    console.log('data', data.rows.length);
+
+                    if (data.rows.length > 0) {
+
+                        let today = new Date(data.rows[0].start_date);
+                        let currentWeekNumber = today.getWeek();
+
+                        let lastDay = new Date(data.rows[0].end_date);
+                        let lastWeekNumber = lastDay.getWeek();
+
+                        let json = {}
+                        for (let j = currentWeekNumber; j <= lastWeekNumber; j++) {
+                            json[`week_${j}`] = "0";
+                        }
+                        res.status(OK).send({
+                            json,
+                            message: 'feched.'
+                        }
+                        );
+                    } else {
+                        res.status(OK).send({
+                            data: {
+                                data: 'No data found for caId ' + caId
+                            }, message: 'No Data.'
+                        });
+                    }
+                });
+            }
+
+
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+
+
+
+}
+
 module.exports = {
     createForecast: createForecast,
     carrierAllocation,
     carrierAllocationNew,
-    fetchAllCarrierAllocation
+    fetchAllCarrierAllocation,
+    carrierAllocationNewDefineTargetValues,
+    getWeekStartEnd
 };

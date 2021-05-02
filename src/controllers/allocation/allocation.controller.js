@@ -29,9 +29,26 @@ const fetchAllCarrierAllocation = function (req, res) {
     })
 }
 
+const carrierAllocationNewDefineTargetValues = function (req, res) {
+    logger.info(`carrierAllocationNewDefineTargetValues API called using data: ${JSON.stringify(req.body)}`)
+    allocationService.carrierAllocationNewDefineTargetValues(req, res).then((response) => {
+        res.send(response);
+    })
+}
+
+const getWeekStartEnd = function(req, res) {
+    logger.info(`getWeek Start and End Value called using data: ${JSON.stringify(req.body)}`)
+    allocationService.getWeekStartEnd(req, res).then((response) => {
+        res.send(response);
+    })
+}
+
+
 module.exports = {
     createForecaster,
     createCarrier,
     carrierAllocationNew,
-    fetchAllCarrierAllocation
+    fetchAllCarrierAllocation,
+    carrierAllocationNewDefineTargetValues,
+    getWeekStartEnd
 };

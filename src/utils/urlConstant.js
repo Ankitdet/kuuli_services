@@ -9,7 +9,17 @@ module.exports.sendLink = "/sendLink";
 module.exports.allowcationBasePath = "/allocation/v1";
 module.exports.createForecast = "/forecast/create" ;
 module.exports.createCarrier = "" ;
+
+// Create Carrier allocation new 
 module.exports.carrierAllocation = "/carrier/create" ;
+
+// Define Target Values
+module.exports.carrierAllocationDefineTargetValue = "/carrier/create/define-target" ;
+
+//get Week start and end
+module.exports.getWeekStartEnd = "/week/start-end";
+
+// Fetch all the carrier allocation
 module.exports.fetchCarrierAllocation = "/carrier/fetch" ;
 
 //Dashboard Endpoint
