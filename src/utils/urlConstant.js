@@ -20,7 +20,11 @@ module.exports.carrierAllocationDefineTargetValue = "/carrier/create/define-targ
 module.exports.getWeekStartEnd = "/week/start-end";
 
 // Fetch all the carrier allocation
-module.exports.fetchCarrierAllocation = "/carrier/fetch" ;
+module.exports.fetchCarrierAllocation = "/carrier/fetch";
+
+// On load carrier allocation page
+module.exports.onLoadCarrierAllocation = "/carrier/onload";
+
 
 //Dashboard Endpoint
 module.exports.dashboardBasePath = "/dashboard"

@@ -43,6 +43,12 @@ const getWeekStartEnd = function(req, res) {
     })
 }
 
+const onLoadCarrierAllocation = function(req, res) {
+    logger.info(`OnLoad Carrier Allocation Page API called. ${JSON.stringify(req.body)}`)
+    allocationService.onLoadCarrierAllocation(req, res).then((response) => {
+        res.send(response);
+    })
+}
 
 module.exports = {
     createForecaster,
@@ -50,5 +56,6 @@ module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
-    getWeekStartEnd
+    getWeekStartEnd,
+    onLoadCarrierAllocation
 };

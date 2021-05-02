@@ -71,7 +71,21 @@ const carrierAllocationNew = async (req, res) => {
 
     try {
         return executeQuery(query).then((data) => {
-            res.status(OK).send({ ca_id: data.rows[0].ca_id, message: 'carrier allocation successfully created.' });
+            let query01 = `INSERT INTO target_values("ca_id", "week_1", "week_2", "week_3", "week_4","week_5", "week_6", "week_7", "week_8","week_9", "week_10", 
+            "week_11", "week_12", "week_13", "week_14","week_15", "week_16", "week_17", "week_18","week_19", "week_20",
+            "week_21", "week_22", "week_23", "week_24","week_25", "week_26", "week_27", "week_28","week_29", "week_30", 
+            "week_31", "week_32", "week_33", "week_34","week_35", "week_36", "week_37", "week_38","week_39", "week_40", 
+            "week_41", "week_42", "week_43", "week_44","week_45", "week_46", "week_47", "week_48","week_49", "week_50", 
+            "week_51", "week_52", "created_on") 
+            VALUES ('${data.rows[0].ca_id}','0','0','0','0','0','0','0','0','0','0',
+            '0','0','0','0','0','0','0','0','0','0',
+            '0','0','0','0','0','0','0','0','0','0',
+            '0','0','0','0','0','0','0','0','0','0',
+            '0','0','0','0','0','0','0','0','0','0',
+            '0','0', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`
+            return executeQuery(query01).then((dataFetch) => {
+                res.status(OK).send({ ca_id: data.rows[0].ca_id, message: 'carrier allocation successfully created.' });
+            });
         });
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });
@@ -79,10 +93,11 @@ const carrierAllocationNew = async (req, res) => {
 }
 
 const fetchAllCarrierAllocation = async (req, res) => {
-    let query = `SELECT * from carrier_allocation_new`;
-
+    const query = `select * from carrier_allocation_new ca left join target_values tv on tv.ca_id = ca.ca_id`;
     try {
         return executeQuery(query).then((data) => {
+
+            console.log('data.rows', data.rows);
             res.status(OK).send({ data: data.rows, message: 'feched.' });
         });
     } catch (err) {
@@ -177,9 +192,91 @@ const getWeekStartEnd = async (req, res) => {
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });
     }
+}
 
+const onLoadCarrierAllocation = async (req, res) => {
+    const json = {
+        "type": [
+            {
+                "label": "Air",
+                "value": "air"
+            },
+            {
+                "label": "Sea",
+                "value": "sea"
+            },
+            {
+                "label": "Air",
+                "value": "air"
+            },
 
+        ],
+        "carrierName": [
+            {
+                "label": "ANL",
+                "value": "ANL"
+            },
+            {
+                "label": "MAERSK",
+                "value": "MAERSK"
+            }
+            , {
+                "label": "APL",
+                "value": "APL"
+            },
+            {
+                "label": "Zim",
+                "value": "Zim"
+            }
 
+        ],
+        "service": [
+            {
+                "label": "9401",
+                "value": "9401"
+            },
+            {
+                "label": "9402",
+                "value": "9402"
+            }
+            ,
+            {
+                "label": "9403",
+                "value": "9403"
+            }
+        ],
+        "portOfLoading": [
+            {
+                "label": "",
+                "value": "9401"
+            },
+            {
+                "label": "9402",
+                "value": "9402"
+            }
+            ,
+            {
+                "label": "9403",
+                "value": "9403"
+            }
+        ],
+        "portOfDischarge": [
+            {
+                "label": "",
+                "value": "9401"
+            },
+            {
+                "label": "9402",
+                "value": "9402"
+            }
+            ,
+            {
+                "label": "9403",
+                "value": "9403"
+            }
+        ],
+    }
+    res.status(OK).send({ data: json, message: 'feched.' });
 }
 
 module.exports = {
@@ -188,5 +285,6 @@ module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
-    getWeekStartEnd
+    getWeekStartEnd,
+    onLoadCarrierAllocation
 };
