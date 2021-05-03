@@ -252,31 +252,30 @@ const onLoadCarrierAllocation = async (req, res) => {
         "portOfLoading": [
             {
                 "label": "Canillo",
-                "value": "canillo"
+                "value": "AD"
             },
             {
-                "label": "Andorra la Vella,",
-                "value": "Andorra la Vella,"
-            }
-            ,
+                "label": "Andorra la Vella",
+                "value": "AD"
+            },
             {
                 "label": "Abu Dhabi",
-                "value": "Abu Dhabi"
+                "value": "AE"
             }
         ],
         "portOfDischarge": [
             {
-                "label": "Escaldes-Engordany",
-                "value": "Escaldes-Engordany"
+                "label": "Jumayrah",
+                "value": "AE"
             },
             {
-                "label": "Ordino",
-                "value": "Ordino"
+                "label": "Kabla",
+                "value": "AE"
             }
             ,
             {
-                "label": "Jebel Dhanna",
-                "value": "Jebel Dhanna"
+                "label": "Bost",
+                "value": "AF"
             }
         ],
     }
