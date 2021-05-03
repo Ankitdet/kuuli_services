@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 
 const allocationController = require('../../controllers/allocation/allocation.controller');
-const { createForecast, createCarrier, carrierAllocation, fetchCarrierAllocation, carrierAllocationDefineTargetValue, getWeekStartEnd, onLoadCarrierAllocation} = require('../../utils/urlConstant');
+const { createForecast, createCarrier, carrierAllocation, fetchCarrierAllocation, carrierAllocationDefineTargetValue, getWeekStartEnd, onLoadCarrierAllocation, updateTargetValues} = require('../../utils/urlConstant');
 
 router.route(createForecast).post(allocationController.createForecaster);
 router.route(createCarrier).post(allocationController.createCarrier);
 
 // Create new carrier allocation (When click on ContinueButton)
 router.route(carrierAllocation).post(allocationController.carrierAllocationNew);
+
+// Update carrier allocation's target values
+router.route(updateTargetValues).post(allocationController.updateTargetValues);
 
 // Get all created Carrier allocation in the System 
 router.route(fetchCarrierAllocation).get(allocationController.fetchAllCarrierAllocation);

@@ -7,14 +7,17 @@ module.exports.sendLink = "/sendLink";
 
 //Allocation Endpoint
 module.exports.allowcationBasePath = "/allocation/v1";
-module.exports.createForecast = "/forecast/create" ;
-module.exports.createCarrier = "" ;
+module.exports.createForecast = "/forecast/create";
+module.exports.createCarrier = "";
 
 // Create Carrier allocation new 
-module.exports.carrierAllocation = "/carrier/create" ;
+module.exports.carrierAllocation = "/carrier/create";
+
+// Update target values 
+module.exports.updateTargetValues = "/carrier/update";
 
 // Define Target Values
-module.exports.carrierAllocationDefineTargetValue = "/carrier/create/define-target" ;
+module.exports.carrierAllocationDefineTargetValue = "/carrier/create/define-target";
 
 //get Week start and end
 module.exports.getWeekStartEnd = "/week/start-end";

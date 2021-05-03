@@ -50,6 +50,13 @@ const onLoadCarrierAllocation = function(req, res) {
     })
 }
 
+const updateTargetValues = function(req,res) {
+    logger.info(`Update target values of Carrier allocation ${JSON.stringify(req.body)}`)
+    allocationService.updateTargetValues(req, res).then((response) => {
+        res.send(response);
+    })
+}
+
 module.exports = {
     createForecaster,
     createCarrier,
@@ -57,5 +64,6 @@ module.exports = {
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
     getWeekStartEnd,
-    onLoadCarrierAllocation
+    onLoadCarrierAllocation,
+    updateTargetValues
 };

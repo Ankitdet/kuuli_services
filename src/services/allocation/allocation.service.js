@@ -227,6 +227,10 @@ const onLoadCarrierAllocation = async (req, res) => {
             {
                 "label": "Zim",
                 "value": "Zim"
+            },
+            {
+                "label": "THE CHINA NAVIGATION COMPANY",
+                "value": "THE CHINA NAVIGATION COMPANY"
             }
 
         ],
@@ -247,36 +251,111 @@ const onLoadCarrierAllocation = async (req, res) => {
         ],
         "portOfLoading": [
             {
-                "label": "",
-                "value": "9401"
+                "label": "Canillo",
+                "value": "canillo"
             },
             {
-                "label": "9402",
-                "value": "9402"
+                "label": "Andorra la Vella,",
+                "value": "Andorra la Vella,"
             }
             ,
             {
-                "label": "9403",
-                "value": "9403"
+                "label": "Abu Dhabi",
+                "value": "Abu Dhabi"
             }
         ],
         "portOfDischarge": [
             {
-                "label": "",
-                "value": "9401"
+                "label": "Escaldes-Engordany",
+                "value": "Escaldes-Engordany"
             },
             {
-                "label": "9402",
-                "value": "9402"
+                "label": "Ordino",
+                "value": "Ordino"
             }
             ,
             {
-                "label": "9403",
-                "value": "9403"
+                "label": "Jebel Dhanna",
+                "value": "Jebel Dhanna"
             }
         ],
     }
     res.status(OK).send({ data: json, message: 'feched.' });
+}
+
+const updateTargetValues = async (req, res) => {
+
+    const { caId,
+        week_01, week_02, week_03, week_04, week_05, week_06, week_07, week_08, week_09, week_10,
+        week_11, week_12, week_13, week_14, week_15, week_16, week_17, week_18, week_19, week_20,
+        week_21, week_22, week_23, week_24, week_25, week_26, week_27, week_28, week_29, week_30,
+        week_31, week_32, week_33, week_34, week_35, week_36, week_37, week_38, week_39, week_40,
+        week_41, week_42, week_43, week_44, week_45, week_46, week_47, week_48, week_49, week_50,
+        week_51, week_52 } = req.body;
+
+    let query = `UPDATE target_values 
+            set 
+            "week_1" = ${week_01}, 
+            "week_2" = ${week_02}, 
+            "week_3" = ${week_03}, 
+            "week_4" = ${week_04},
+            "week_5" = ${week_05}, 
+            "week_6" = ${week_06}, 
+            "week_7" = ${week_07}, 
+            "week_8" = ${week_08},
+            "week_9" = ${week_09}, 
+            "week_10" = ${week_10}, 
+            "week_11" = ${week_11},
+            "week_12" = ${week_12}, 
+            "week_13" = ${week_13}, 
+            "week_14" = ${week_14},
+            "week_15" = ${week_15}, 
+            "week_16" = ${week_16}, 
+            "week_17" = ${week_17}, 
+            "week_18" = ${week_18},
+            "week_19" = ${week_19}, 
+            "week_20" = ${week_20},
+            "week_21" = ${week_21}, 
+            "week_22" = ${week_22}, 
+            "week_23" = ${week_23}, 
+            "week_24" = ${week_24},
+            "week_25" = ${week_25}, 
+            "week_26" = ${week_26}, 
+            "week_27" = ${week_27}, 
+            "week_28" = ${week_28},
+            "week_29" = ${week_29}, 
+            "week_30" = ${week_30}, 
+            "week_31" = ${week_31}, 
+            "week_32" = ${week_32}, 
+            "week_33" = ${week_33}, 
+            "week_34" = ${week_34},
+            "week_35" = ${week_35}, 
+            "week_36" = ${week_36}, 
+            "week_37" = ${week_37}, 
+            "week_38" = ${week_38},
+            "week_39" = ${week_39}, 
+            "week_40" = ${week_40}, 
+            "week_41" = ${week_41}, 
+            "week_42" = ${week_42}, 
+            "week_43" = ${week_43}, 
+            "week_44" = ${week_44},
+            "week_45" = ${week_45}, 
+            "week_46" = ${week_46}, 
+            "week_47" = ${week_47}, 
+            "week_48" = ${week_48},
+            "week_49" = ${week_49}, 
+            "week_50" = ${week_50}, 
+            "week_51" = ${week_51}, 
+            "week_52" = ${week_52}, 
+            "updated_on" = '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}'
+            where ca_id=${caId}`;
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ message: `target values updated successfully for caId ${caId}` });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
 }
 
 module.exports = {
@@ -286,5 +365,6 @@ module.exports = {
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
     getWeekStartEnd,
-    onLoadCarrierAllocation
+    onLoadCarrierAllocation,
+    updateTargetValues
 };
