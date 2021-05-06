@@ -7,6 +7,7 @@ const executeQuery = require('../../db/connect');
 const moment = require('moment');
 const apiStatus = require('../../utils/apiStatus');
 const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
+const { main } = require('../../../nodemailer');
 
 
 const sendEmail = async function (req, res) {
@@ -23,14 +24,17 @@ const sendEmail = async function (req, res) {
         try {
             var message = {
                 to: emailAddress,
-                subject: `welcome ${name} Test Message`,
+                subject: `Thank you`,
                 html: template
             };
             return new Promise((resolve, reject) => {
-                nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
-                    if (err) reject(res.status(INTERNAL_SERVER_ERROR).send({ failed: err }));
+                main().then((data) => {
                     res.status(OK).send({ status: 200, success: 'Email sent successfully' });
-                });
+                })
+                /*  nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
+                     if (err) reject(res.status(INTERNAL_SERVER_ERROR).send({ failed: err }));
+                     res.status(OK).send({ status: 200, success: 'Email sent successfully' });
+                 }); */
             })
 
         } catch (error) {
@@ -52,7 +56,7 @@ var sendLink = async function (req, res) {
     try {
         var message = {
             to: email,
-            subject: `Thank you for selecting Kuuli Service.`,
+            subject: `Thank you for selecting Kuulie Service.`,
             html: template
         };
         return new Promise((resolve, reject) => {
