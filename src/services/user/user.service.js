@@ -27,14 +27,14 @@ const sendEmail = async function (req, res) {
                 subject: `Thank you`,
                 html: template
             };
-             return new Promise((resolve, reject) => {
-            main().then((data) => {
-                res.status(OK).send({ status: 200, success: 'Email sent successfully' });
-            })
-            /*  nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
-                 if (err) reject(res.status(INTERNAL_SERVER_ERROR).send({ failed: err }));
-                 res.status(OK).send({ status: 200, success: 'Email sent successfully' });
-             }); */
+            return new Promise((resolve, reject) => {
+                main(emailAddress).then((data) => {
+                    res.status(OK).send({ status: 200, success: 'Email sent successfully' });
+                })
+                /*  nodemailerConfig.gmailTransport.sendMail(message, function (err, info) {
+                     if (err) reject(res.status(INTERNAL_SERVER_ERROR).send({ failed: err }));
+                     res.status(OK).send({ status: 200, success: 'Email sent successfully' });
+                 }); */
             })
 
         } catch (error) {
