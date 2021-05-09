@@ -31,12 +31,6 @@ const createForecast = async (req, res) => {
     }
 }
 
-const updateCustomerForecast = async (req, res) => {
-
-}
-
-const deleteCustomerForecast = async (req, res) => {
-}
 
 const carrierAllocation = async (req, res) => {
     // Convert json string to js object
@@ -244,11 +238,7 @@ const onLoadCarrierAllocation = async (req, res) => {
             {
                 "label": "Sea",
                 "value": "sea"
-            },
-            {
-                "label": "Air",
-                "value": "air"
-            },
+            }
 
         ],
         "carrierName": [

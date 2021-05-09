@@ -16,6 +16,19 @@ CREATE SEQUENCE IF NOT EXISTS carrier_allocation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS quotation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS allocation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS target_id_seq;
+CREATE SEQUENCE IF NOT EXISTS onload_seq;
+
+CREATE TABLE IF NOT EXISTS "onload_ca" (
+	"onload_id" INTEGER NOT NULL DEFAULT nextval('onload_seq'),
+	"carrier_name" VARCHAR(500) NOT NULL,
+	"logo" bytea DEFAULT NULL,
+    "service" VARCHAR(500) NOT NULL,
+	"preferred_supplier" VARCHAR(500) NOT NULL,
+	"ports" VARCHAR(500) NOT NULL,
+	"contract_type" VARCHAR(500) NOT NULL,
+	"container_type" VARCHAR(500) NOT NULL,
+	PRIMARY KEY ("onload_id")
+);
 
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" INTEGER NOT NULL DEFAULT nextval('user_id_seq'),
