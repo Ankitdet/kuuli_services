@@ -229,87 +229,74 @@ const getWeekStartEnd = async (req, res) => {
 }
 
 const onLoadCarrierAllocation = async (req, res) => {
-    const json = {
-        "type": [
-            {
-                "label": "Air",
-                "value": "air"
-            },
-            {
-                "label": "Sea",
-                "value": "sea"
-            }
 
-        ],
-        "carrierName": [
-            {
-                "label": "ANL",
-                "value": "ANL"
-            },
-            {
-                "label": "MAERSK",
-                "value": "MAERSK"
-            }
-            , {
-                "label": "APL",
-                "value": "APL"
-            },
-            {
-                "label": "Zim",
-                "value": "Zim"
-            },
-            {
-                "label": "THE CHINA NAVIGATION COMPANY",
-                "value": "THE CHINA NAVIGATION COMPANY"
-            }
+    const query = `select * from onload_ca;`;
+    let carrierName = [];
+    let service = [];
+    let prefferedSupplier = [];
+    let ports = [];
+    let contactType = [];
+    let containerType = [];
 
-        ],
-        "service": [
-            {
-                "label": "9401",
-                "value": "9401"
-            },
-            {
-                "label": "9402",
-                "value": "9402"
+    try {
+        return executeQuery(query).then((data) => {
+            console.log(data);
+            data.rows.forEach((ca) => {
+                carrierName.push({
+                    label: ca.carrier_name,
+                    value: ca.carrier_name
+                });
+                service.push({
+                    label: ca.service,
+                    value: ca.service
+                });
+
+                prefferedSupplier.push({
+                    label: ca.preferred_supplier,
+                    value: ca.preferred_supplier
+                })
+
+                ports.push({
+                    label: ca.ports,
+                    value: ca.ports
+                })
+                contactType.push({
+                    label: ca.contract_type,
+                    value: ca.contract_type
+                })
+
+                containerType.push({
+                    label: ca.container_type,
+                    value: ca.container_type
+                })
+            })
+
+            const json = {
+                "type": [
+                    {
+                        "label": "Air",
+                        "value": "air"
+                    },
+                    {
+                        "label": "Sea",
+                        "value": "sea"
+                    }
+
+                ],
+                "preferredSupplier": prefferedSupplier,
+                "carrierName": carrierName,
+                "service": service,
+                "portOfLoading": ports,
+                "portOfDischarge": ports,
+                "contractType": contactType,
+                "containerType": containerType
             }
-            ,
-            {
-                "label": "9403",
-                "value": "9403"
-            }
-        ],
-        "portOfLoading": [
-            {
-                "label": "Canillo",
-                "value": "AD"
-            },
-            {
-                "label": "Andorra la Vella",
-                "value": "AD"
-            },
-            {
-                "label": "Abu Dhabi",
-                "value": "AE"
-            }
-        ],
-        "portOfDischarge": [
-            {
-                "label": "Jumayrah",
-                "value": "AE"
-            },
-            {
-                "label": "Kabla",
-                "value": "AE"
-            }
-            ,
-            {
-                "label": "Bost",
-                "value": "AF"
-            }
-        ],
+            res.status(OK).send({ data: json, message: 'feched.' });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
     }
-    res.status(OK).send({ data: json, message: 'feched.' });
+
 }
 
 const updateTargetValues = async (req, res) => {
