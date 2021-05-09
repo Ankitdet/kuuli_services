@@ -116,9 +116,23 @@ const carrierAllocationNew = async (req, res) => {
 
 const fetchAllCarrierAllocation = async (req, res) => {
     const query = `select * from carrier_allocation_new ca left join target_values tv on tv.ca_id = ca.ca_id`;
+    let myData = [];
+    let defaultValue = -1;
+    let jsonStr = '{';
     try {
         return executeQuery(query).then((data) => {
-            res.status(OK).send({ data: data.rows, message: 'feched.' });
+            data.rows.forEach((carrierData) => {
+                var key = Object.keys(carrierData).filter(function (key) { return carrierData[key] != defaultValue });
+                key.forEach((ownKey) => {
+                    jsonStr += `"${ownKey}" : "${carrierData[ownKey]}",`
+                });
+                jsonStr = jsonStr.slice(0, -1);
+                jsonStr += '}';
+                myData.push(JSON.parse(jsonStr));
+                jsonStr = {};
+                jsonStr = '{';
+            })
+            res.status(OK).send({ data: myData, message: 'feched.' });
         });
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });
