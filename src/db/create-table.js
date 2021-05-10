@@ -142,16 +142,12 @@ CREATE TABLE IF NOT EXISTS "carrier_allocation_new" (
 	"sailing" VARCHAR(500) NOT NULL,
 	"type" VARCHAR(500) NOT NULL,
 	"total_allocated_space" VARCHAR(500) NOT NULL,
+	"costs" VARCHAR(500) DEFAULT NULL,
+	"actual_allocate_space" VARCHAR(500) DEFAULT NULL,
 	"start_date" TIMESTAMP NOT NULL,
 	"end_date" TIMESTAMP NOT NULL,
 	"created_on" TIMESTAMP NULL,
 	"updated_on" TIMESTAMP NULL,
-	PRIMARY KEY ("ca_id")
-);
-
-CREATE TABLE IF NOT EXISTS "target_values" (
-	"target_id" INTEGER NOT NULL DEFAULT nextval('target_id_seq'),
-	"ca_id" INTEGER NOT NULL,
 	"week_1" VARCHAR(50) DEFAULT -1 NULL,
 	"week_2" VARCHAR(50) DEFAULT -1 NULL,
 	"week_3" VARCHAR(50) DEFAULT -1 NULL,
@@ -204,9 +200,7 @@ CREATE TABLE IF NOT EXISTS "target_values" (
 	"week_50" VARCHAR(50) DEFAULT -1 NULL,
 	"week_51" VARCHAR(50) DEFAULT -1 NULL,
 	"week_52" VARCHAR(50) DEFAULT -1 NULL,
-	"created_on" TIMESTAMP NULL,
-	"updated_on" TIMESTAMP NULL,
-	PRIMARY KEY ("target_id")
+	PRIMARY KEY ("ca_id")
 );
 `
 
