@@ -21,7 +21,7 @@ CREATE SEQUENCE IF NOT EXISTS onload_seq;
 CREATE TABLE IF NOT EXISTS "onload_ca" (
 	"onload_id" INTEGER NOT NULL DEFAULT nextval('onload_seq'),
 	"carrier_name" VARCHAR(500) NOT NULL,
-	"logo" bytea DEFAULT NULL,
+	"logo" VARCHAR(500) DEFAULT NULL,
     "service" VARCHAR(500) NOT NULL,
 	"preferred_supplier" VARCHAR(500) NOT NULL,
 	"ports" VARCHAR(500) NOT NULL,

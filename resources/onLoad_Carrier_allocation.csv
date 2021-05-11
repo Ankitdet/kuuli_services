@@ -1,0 +1,26 @@
+carrier_name,logo,service,preferred_supplier,ports,contract_type,container_type
+"AUSTRALIA NATIONAL LINE, ANL, ANNU",/resource/,4001,1,"Andorra la Vella, AD, ADALV",,20G0
+"AMERICAN PRESIDENT LINES, APL, APLU",/resource/,4002,2,"Canillo, AD, ADCAN",,20G1
+"CMA-CGM, CMA, CMDU",/resource/,4003,3,"Encamp, AD, ADENC",,20GP
+"CHENG LIE NAVIGATION, CNC, 11DX",/resource/,4004,4,"Escaldes-Engordany, AD, ADESC",,22G0
+"COSCO CONTAINER LINES, COS, COSU",/resource/,4005,5,"La Farga de Moles, AD, ADFMO",,22G1
+"EMIRATES SHIPPING LINE, ESL, ESPU",/resource/,4006,6,"La Massana, AD, ADLMA",,22GP
+"EVERGREEN LINE, EVG, EGLV",/resource/,4007,7,"Ordino, AD, ADORD",,42G0
+"GOLD STAR LINE, GSL, GSLU",/resource/,4008,8,"Pas de la Casa, AD, ADPAS",,42G1
+"HAPAG-LLOYD CONTAINER LINE, HLL, HLCU",/resource/,4009,9,"Sant Julià, AD, ADSJL",,42GP
+"HYUNDAI MERCHANT MARINE, HMM, HDMU",/resource/,4010,10,"Santa Coloma, AD, ADSCO",,45G0
+"HAMBURG SUD, HSD, SUDU",/resource/,4011,11,"Abu al Bukhoosh, AE, AEABU",,45G1
+"KOREA MARINE TRANSPORT COMPANY, KMTC, KMTU",/resource/,4012,12,"Abu Dhabi, AE, AEAUH",,45GP
+"MATSON NAVIGATION, MAT, MATS",/resource/,4013,13,"Abu Musa, AE, AEAMU",,4CGP
+"SEALAND - A MAERSK COMPANY, MCC, MCCQ",/resource/,4014,14,"Ajman, AE, AEAJM",,D2
+"MEDITERRANEAN SHIPPING COMPANY, MSC, MSCU",/resource/,4015,15,"Al Ain, AE, AEAAN",,D4
+"MAERSK LINE, MSK, MAEU",/resource/,4016,16,"Al Dhafra, AE, AEDHF",,D5
+"OCEAN NETWORK EXPRESS, ONE, ONEY",/resource/,4017,17,"Al Fujayrah, AE, AEFJR",,D7
+"ORIENT OVERSEAS CONTAINER LINE, OOL, OOLU",/resource/,4018,18,"Al Hamriyah, AE, AEHAM",,L0G1
+"PACIFIC INTERNATIONAL LINES, PIL, PCIU",/resource/,4019,19,"Ar Ruways, AE, AERUW",,L0GP
+"SAFMARINE CONTAINER LINE, SAF, SAFM",/resource/,4020,20,"Arzanah Island, AE, AEARZ",,L2G1
+"SM LINE CORPORATION, SML, SMLM",/resource/,4021,21,"Das Island, AE, AEDAS",,L2GP
+"TS LINES, TSL, 13DF",/resource/,4022,22,"Dibba, AE, AEDBP",,L5G1
+"WAN HAI LINES, WHL, 22AA",/resource/,4023,23,"Dubai, AE, AEDXB",,L5GP
+"YANG MING LINE, YML, YMLU",/resource/,4024,24,"Fateh Terminal, AE, AEFAT",,20H0
+"ZIM INTEGRATED SHIPPING SERVICES, ZIM, ZIMU",/resource/,4025,25,"Indooroodilly, AE, AEIND",,20HR

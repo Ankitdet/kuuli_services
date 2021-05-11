@@ -38,7 +38,7 @@ let User = sql.define({
 });
 let usersToInsert = [];
 function getData() {
-    let filePath = "/resources/sample_data.csv";
+    let filePath = "/resources/onLoad_Carrier_allocation.csv";
     new Promise((resolve, rej) => {
         readFromN2M(path.resolve(__dirname) + filePath).then((data) => {
             resolve(data);
