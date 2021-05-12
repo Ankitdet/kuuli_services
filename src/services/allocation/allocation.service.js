@@ -138,8 +138,11 @@ const onLoadCarrierAllocation = async (req, res) => {
                 });
 
                 prefferedSupplier.push({
-                    label: ca.preferred_supplier,
-                    value: ca.preferred_supplier
+                    label: 'Core',
+                    value: 'Core'
+                },{
+                    label: 'Non core',
+                    value: 'Non Core'
                 })
 
                 ports.push({
