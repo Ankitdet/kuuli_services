@@ -36,3 +36,6 @@ module.exports.QuotationBasePathById = "/quotation/fetchById"
 module.exports.QuotationCreateBasePath = "/quotation/create"
 module.exports.QuotationUpdateBasePath = "/quotation/update"
 
+// Customer module endpoint
+module.exports.customerbaseUrl= "/customer/v1"
+module.exports.fetchCustomerDetails = "/customer-details"

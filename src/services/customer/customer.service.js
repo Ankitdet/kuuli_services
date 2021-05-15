@@ -1,7 +1,4 @@
 require('dotenv').config();
-const pug = require('pug');
-const Path = require('path');
-const logger = require('../../logger/logger');
 const executeQuery = require('../../db/connect');
 const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 
