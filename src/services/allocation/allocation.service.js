@@ -29,7 +29,7 @@ const carrierAllocationNew = async (req, res) => {
     "destination", "sailing", "type", "total_allocated_space", "start_date", "end_date",`
 
     let values = `'${containerType}','${containerName}','${service}','${supplier}','${origin}','${destination}',
-    '${sailing}', '${type}', '${totalAllocatedSpace}', '${moment(startDate).format('YYYY-MM-DD HH:mm:ss')}','${moment(endDate).format('YYYY-MM-DD HH:mm:ss')}' 
+    '${sailing}', '${type}', '${totalAllocatedSpace}', '${moment(startDate, 'MM/DD/YYYY')}','${moment(endDate,'MM/DD/YYYY')}' 
     ,`;
 
     if (currentWeekNumber >= lastWeekNumber) {
@@ -50,7 +50,10 @@ const carrierAllocationNew = async (req, res) => {
     }
     query01 += '"created_on")';
     query01 = query01 + `
-    VALUES (${values} '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`
+    VALUES (${values} '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}' );`
+
+
+    console.log('querL', query01);
     try {
         return executeQuery(query01).then((data) => {
             res.status(OK).send({ ca_id: data, message: 'carrier allocation successfully created.' });
@@ -134,6 +137,7 @@ const onLoadCarrierAllocation = async (req, res) => {
                 label: 'Non core',
                 value: 'Non Core'
             })
+
 
             
             data.rows.forEach((ca) => {

@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS "carrier_allocation_new" (
 	"destination" VARCHAR(500) NOT NULL,
 	"sailing" VARCHAR(500) NOT NULL,
 	"type" VARCHAR(500) NOT NULL,
-	"uom" VARCHAR(500) NOT NULL,
+	"uom" VARCHAR(500) DEFAULT NULL,
 	"total_allocated_space" VARCHAR(500) NOT NULL,
 	"costs" VARCHAR(500) DEFAULT NULL,
 	"actual_allocate_space" VARCHAR(500) DEFAULT NULL,
