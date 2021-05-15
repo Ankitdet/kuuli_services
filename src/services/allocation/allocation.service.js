@@ -5,13 +5,12 @@ const moment = require('moment');
 
 const carrierAllocationNew = async (req, res) => {
 
-    const { containerType, containerName, service, supplier, origin, destination, sailing, type, totalAllocatedSpace, startDate, endDate } = req.body;
+    const { containerType, containerName, service, supplier, origin, destination, sailing, type, totalAllocatedSpace, startDate, endDate } = req.body.postData;
 
     let isValid = checkDateIsInYear(startDate, endDate);
     if (!isValid) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: 'startdate and enddate should not be more than 52 weeks' });
     }
-
     Date.prototype.getWeek = function () {
         var onejan = new Date(this.getFullYear(), 0, 1);
         var today = new Date(this.getFullYear(), this.getMonth(), this.getDate());
@@ -133,13 +132,13 @@ const onLoadCarrierAllocation = async (req, res) => {
             prefferedSupplier.push({
                 label: 'Core',
                 value: 'Core'
-            },{
+            }, {
                 label: 'Non core',
                 value: 'Non Core'
             })
 
 
-            
+
             data.rows.forEach((ca) => {
                 carrierName.push({
                     label: ca.carrier_name,
@@ -150,7 +149,7 @@ const onLoadCarrierAllocation = async (req, res) => {
                     value: ca.service
                 });
 
-                
+
 
                 ports.push({
                     label: ca.ports,
