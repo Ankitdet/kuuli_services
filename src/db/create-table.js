@@ -17,6 +17,44 @@ CREATE SEQUENCE IF NOT EXISTS quotation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS allocation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS target_id_seq;
 CREATE SEQUENCE IF NOT EXISTS onload_seq;
+CREATE SEQUENCE IF NOT EXISTS customer_seq;
+
+CREATE TABLE IF NOT EXISTS "customer_details" (
+	"id" INTEGER NOT NULL DEFAULT nextval('customer_seq'),
+	"customer_id" VARCHAR(500) NOT NULL,
+	"firstname" VARCHAR(500) DEFAULT NULL,
+    "lastname" VARCHAR(500) NOT NULL,
+	"title" VARCHAR(500) NOT NULL,
+	"department" VARCHAR(500) NOT NULL,
+	"company_name" VARCHAR(500) NOT NULL,
+	"revenue" VARCHAR(500) NOT NULL,
+	"phone_number" VARCHAR(500) NOT NULL,
+	"mobile_number" VARCHAR(500) NOT NULL,
+	"fax_number" VARCHAR(500) DEFAULT NULL,
+	"primary_emailid" VARCHAR(500) DEFAULT NULL,
+	"secondary_emailid" VARCHAR(500) DEFAULT NULL,
+	"website" VARCHAR(500) DEFAULT NULL,
+	"industry" VARCHAR(500) DEFAULT NULL,
+	"address_1" VARCHAR(500) DEFAULT NULL,
+	"address_2" VARCHAR(500) DEFAULT NULL,
+	"pincode" VARCHAR(500) DEFAULT NULL,
+	"city" VARCHAR(500) DEFAULT NULL,
+	"country" VARCHAR(500) DEFAULT NULL,
+	"lead_owner_id" VARCHAR(500) DEFAULT NULL,
+	"lead_owner_first_name" VARCHAR(500) DEFAULT NULL,
+	"lead_owner_last_name" VARCHAR(500) DEFAULT NULL,
+	"lead_owner_email" VARCHAR(500) DEFAULT NULL,
+	"lead_owner_mobile" VARCHAR(500) DEFAULT NULL,
+	"lead_location" VARCHAR(500) DEFAULT NULL,
+	"lead_source" VARCHAR(500) DEFAULT NULL,
+	"deal_amount" VARCHAR(500) DEFAULT NULL,
+	"stage" VARCHAR(500) DEFAULT NULL,
+	"activity" VARCHAR(500) DEFAULT NULL,
+	"probability" VARCHAR(500) DEFAULT NULL,
+	"closing_date" VARCHAR(500) DEFAULT NULL,
+	"business_type" VARCHAR(500) DEFAULT NULL,
+	PRIMARY KEY ("id")
+);
 
 CREATE TABLE IF NOT EXISTS "onload_ca" (
 	"onload_id" INTEGER NOT NULL DEFAULT nextval('onload_seq'),
@@ -144,9 +182,10 @@ CREATE TABLE IF NOT EXISTS "carrier_allocation_new" (
 	"uom" VARCHAR(500) DEFAULT NULL,
 	"total_allocated_space" VARCHAR(500) NOT NULL,
 	"costs" VARCHAR(500) DEFAULT NULL,
+	"planned_costs" VARCHAR(500) DEFAULT NULL,
 	"actual_allocate_space" VARCHAR(500) DEFAULT NULL,
-	"start_date" TIMESTAMP NOT NULL,
-	"end_date" TIMESTAMP NOT NULL,
+	"start_date" VARCHAR(500) NOT NULL,
+	"end_date" VARCHAR(500) NOT NULL,
 	"created_on" TIMESTAMP NULL,
 	"updated_on" TIMESTAMP NULL,
 	"week_1" VARCHAR(50) DEFAULT -1 NULL,
