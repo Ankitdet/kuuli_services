@@ -53,8 +53,7 @@ const carrierAllocationNew = async (req, res) => {
     VALUES (${values} '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}');`
     try {
         return executeQuery(query01).then((data) => {
-            console.log(data.rows);
-            // res.status(OK).send({ ca_id: data.rows[0].ca_id, message: 'carrier allocation successfully created.' });
+            res.status(OK).send({ ca_id: data, message: 'carrier allocation successfully created.' });
         });
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });

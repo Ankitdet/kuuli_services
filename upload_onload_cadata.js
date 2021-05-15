@@ -48,8 +48,8 @@ function getData() {
         executeQuery();
         console.log(data);
     });
-}
-getData();
+ }
+// getData();
 async function readFromN2M(fileName) {
     const lineReader = readLine.createInterface({
         input: fs.createReadStream(fileName)
