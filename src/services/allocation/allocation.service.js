@@ -127,6 +127,16 @@ const onLoadCarrierAllocation = async (req, res) => {
     try {
         return executeQuery(query).then((data) => {
             console.log(data);
+
+            prefferedSupplier.push({
+                label: 'Core',
+                value: 'Core'
+            },{
+                label: 'Non core',
+                value: 'Non Core'
+            })
+
+            
             data.rows.forEach((ca) => {
                 carrierName.push({
                     label: ca.carrier_name,
@@ -137,13 +147,7 @@ const onLoadCarrierAllocation = async (req, res) => {
                     value: ca.service
                 });
 
-                prefferedSupplier.push({
-                    label: 'Core',
-                    value: 'Core'
-                },{
-                    label: 'Non core',
-                    value: 'Non Core'
-                })
+                
 
                 ports.push({
                     label: ca.ports,
