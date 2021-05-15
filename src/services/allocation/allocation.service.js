@@ -29,7 +29,7 @@ const carrierAllocationNew = async (req, res) => {
     "destination", "sailing", "type", "total_allocated_space", "start_date", "end_date",`
 
     let values = `'${containerType}','${containerName}','${service}','${supplier}','${origin}','${destination}',
-    '${sailing}', '${type}', '${totalAllocatedSpace}', '${moment(startDate, 'MM/DD/YYYY')}','${moment(endDate,'MM/DD/YYYY')}' 
+    '${sailing}', '${type}', '${totalAllocatedSpace}', '${startDate}','${endDate}' 
     ,`;
 
     if (currentWeekNumber >= lastWeekNumber) {
