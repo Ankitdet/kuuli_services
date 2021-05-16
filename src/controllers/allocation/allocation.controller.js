@@ -36,11 +36,17 @@ const updateTargetValues = function(req,res) {
         res.send(response);
     })
 }
-
+const downloadExcel = function(req,res) {
+    logger.info(`Download excel aPI call.`);
+    allocationService.downloadExcel(res,res).then((response)=> {
+        res.send(response);
+    })
+}
 module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
     onLoadCarrierAllocation,
-    updateTargetValues
+    updateTargetValues,
+    downloadExcel
 };

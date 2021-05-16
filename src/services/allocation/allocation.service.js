@@ -3,6 +3,18 @@ const executeQuery = require('../../db/connect');
 const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 const moment = require('moment');
 
+const downloadExcel = async (req, res) => {
+    let tutorials = [{ id: 10, title: 20, description: 20, published: 200 }]
+    const csvFields = ["Id", "Title", "Description", "Published"];
+    const csvParserDate = new csvParser({ csvFields });
+    const csvData = csvParserDate.parse(tutorials);
+
+    res.set("Content-Type", "text/csv");
+    res.setHeader("Content-Disposition", "attachment; filename=tutorials.csv");
+
+    res.status(200).end(csvData);
+}
+
 const carrierAllocationNew = async (req, res) => {
 
     const { containerType, containerName, service, supplier, origin, destination, sailing, type, totalAllocatedSpace, startDate, endDate } = req.body.postData;
@@ -273,5 +285,6 @@ module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     onLoadCarrierAllocation,
-    updateTargetValues
+    updateTargetValues,
+    downloadExcel
 };

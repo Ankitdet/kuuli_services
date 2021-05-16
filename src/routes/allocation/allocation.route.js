@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 
 const allocationController = require('../../controllers/allocation/allocation.controller');
-const { carrierAllocation, fetchCarrierAllocation, carrierAllocationDefineTargetValue, onLoadCarrierAllocation, updateTargetValues } = require('../../utils/urlConstant');
+const { carrierAllocation, downloadExcelPath, fetchCarrierAllocation, carrierAllocationDefineTargetValue, onLoadCarrierAllocation, updateTargetValues } = require('../../utils/urlConstant');
 
 // Create new carrier allocation (When click on ContinueButton)
 router.route(carrierAllocation).post(allocationController.carrierAllocationNew);
@@ -18,5 +18,7 @@ router.route(carrierAllocationDefineTargetValue).post(allocationController.carri
 
 // onLoad carrier allocation page
 router.route(onLoadCarrierAllocation).get(allocationController.onLoadCarrierAllocation);
+
+router.route(downloadExcelPath).get(allocationController.downloadExcel);
 
 module.exports = router;

@@ -28,6 +28,9 @@ module.exports.fetchCarrierAllocation = "/carrier/fetch";
 // On load carrier allocation page
 module.exports.onLoadCarrierAllocation = "/carrier/onload";
 
+module.exports.downloadExcelPath = "/carrier/download";
+
+
 
 //Dashboard Endpoint
 module.exports.dashboardBasePath = "/dashboard"
