@@ -23,23 +23,23 @@ const carrierAllocationNewDefineTargetValues = function (req, res) {
     })
 }
 
-const onLoadCarrierAllocation = function(req, res) {
+const onLoadCarrierAllocation = function (req, res) {
     logger.info(`OnLoad Carrier Allocation Page API called. ${JSON.stringify(req.body)}`)
     allocationService.onLoadCarrierAllocation(req, res).then((response) => {
         res.send(response);
     })
 }
 
-const updateTargetValues = function(req,res) {
+const updateTargetValues = function (req, res) {
     logger.info(`Update target values of Carrier allocation ${JSON.stringify(req.body)}`)
     allocationService.updateTargetValues(req, res).then((response) => {
         res.send(response);
     })
 }
-const downloadExcel = function(req,res) {
+const downloadExcel = function (req, res) {
     logger.info(`Download excel aPI call.`);
-    allocationService.downloadExcel(res,res).then((response)=> {
-        res.send(response);
+    allocationService.downloadExcel(res, res).then((response) => {
+        return response;
     })
 }
 module.exports = {

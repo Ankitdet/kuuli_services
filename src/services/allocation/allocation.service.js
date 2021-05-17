@@ -4,17 +4,33 @@ const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 const moment = require('moment');
 
 const downloadExcel = async (req, res) => {
-    let tutorials = [{ id: 10, title: 20, description: 20, published: 200 }]
-    const csvFields = ["Id", "Title", "Description", "Published"];
-    const csvParserDate = new csvParser({ csvFields });
-    const csvData = csvParserDate.parse(tutorials);
-
-    res.set("Content-Type", "text/csv");
-    res.setHeader("Content-Disposition", "attachment; filename=tutorials.csv");
-
-    res.status(200).end(csvData);
+    let csvData = `Type,Carrier Name,Service,Preferred Supplier,Port of Loading,Port of Discharge,Sailing,Contract Type,Planned Allocated Space,Actual Allocated Space,UoM,Planned Cost,Actual Cost,Start Date,End Date,Planned_week_01,Planned_week_02,Planned_week_03,Planned_week_04,Planned_week_05,Planned_week_06,Planned_week_07,Planned_week_08,Planned_week_09,Planned_week_10,Planned_week_11,Planned_week_12,Planned_week_13,Planned_week_14,Planned_week_15,Planned_week_16,Planned_week_17,Planned_week_18,Planned_week_19,Planned_week_20,Planned_week_21,Planned_week_22,Planned_week_23,Planned_week_24,Planned_week_25,Planned_week_26,Planned_week_27,Planned_week_28,Planned_week_29,Planned_week_30,Planned_week_31,Planned_week_32,Planned_week_33,Planned_week_34,Planned_week_35,Planned_week_36,Planned_week_37,Planned_week_38,Planned_week_39,Planned_week_40,Planned_week_41,Planned_week_42,Planned_week_43,Planned_week_44,Planned_week_45,Planned_week_46,Planned_week_47,Planned_week_48,Planned_week_49,Planned_week_50,Planned_week_51,Planned_week_52,Actual_week_01,Planned_week_02,Actual_week_03,Actual_week_04,Actual_week_05,Actual_week_06,Actual_week_07,Actual_week_08,Actual_week_09,Actual_week_10,Actual_week_11,Actual_week_12,Actual_week_13,Actual_week_14,Actual_week_15,Actual_week_16,Actual_week_17,Actual_week_18,Actual_week_19,Actual_week_20,Actual_week_21,Actual_week_22,Actual_week_23,Actual_week_24,Actual_week_25,Actual_week_26,Actual_week_27,Actual_week_28,Actual_week_29,Actual_week_30,Actual_week_31,Actual_week_32,Actual_week_33,Actual_week_34,Actual_week_35,Actual_week_36,Actual_week_37,Actual_week_38,Actual_week_39,Actual_week_40,Actual_week_41,Actual_week_42,Actual_week_43,Actual_week_44,Actual_week_45,Actual_week_46,Actual_week_47,Actual_week_48,Actual_week_49,Actual_week_50,Actual_week_51,Actual_week_52`;
+    await fetchAlltheCarrierAllocation((data) => {
+        csvData += '\r\n' + data;
+        res.setHeader("Content-Disposition", "attachment; filename=carrier-allocation-details.csv");
+        res.write(csvData);
+        res.end();
+    });
 }
 
+// Excel download
+const fetchAlltheCarrierAllocation = async (res) => {
+    const query = `select * from carrier_allocation_new`;
+    try {
+        return executeQuery(query).then((data) => {
+            let carrier_alloction = "";
+            data.rows.sort((a, b) => b.ca_id - a.ca_id);
+            data.rows.forEach((caData) => {
+                carrier_alloction += `${caData.container_type}, ${caData.container_name},	${caData.service},	${caData.supplier},	${caData.origin},	${caData.destination},	${caData.sailing},	${caData.type},	${caData.total_allocated_space},	${caData.actual_allocated_space},	${caData.uom},	${caData.planned_costs},	${caData.actual_costs},	${caData.start_date},	${caData.end_date},	${caData.week_1},	${caData.week_2},	${caData.week_3},	${caData.week_4},	${caData.week_5},	${caData.week_6},	${caData.week_7},	${caData.week_8},	${caData.week_9},	${caData.week_10},	${caData.week_11},	${caData.week_12},	${caData.week_13},	${caData.week_14},	${caData.week_15},	${caData.week_16},	${caData.week_17},	${caData.week_18},	${caData.week_19},	${caData.week_20},	${caData.week_21},	${caData.week_22},	${caData.week_23},	${caData.week_24},	${caData.week_25},	${caData.week_26},	${caData.week_27},	${caData.week_28},	${caData.week_29},	${caData.week_30},	${caData.week_31},	${caData.week_32},	${caData.week_33},	${caData.week_34},	${caData.week_35},	${caData.week_36},	${caData.week_37},	${caData.week_38},	${caData.week_39},	${caData.week_40},	${caData.week_41},	${caData.week_42},	${caData.week_43},	${caData.week_44},	${caData.week_45},	${caData.week_46},	${caData.week_47},	${caData.week_48},	${caData.week_49},	${caData.week_50},	${caData.week_51},	${caData.week_52},	${caData.actual_week_1},	${caData.actual_week_2},	${caData.actual_week_3},	${caData.actual_week_4},	${caData.actual_week_5},	${caData.actual_week_6},	${caData.actual_week_7},	${caData.actual_week_8},	${caData.actual_week_9},	${caData.actual_week_10},	${caData.actual_week_11},	${caData.actual_week_12},	${caData.actual_week_13},	${caData.actual_week_14},	${caData.actual_week_15},	${caData.actual_week_16},	${caData.actual_week_17},	${caData.actual_week_18},	${caData.actual_week_19},	${caData.actual_week_20},	${caData.actual_week_21},	${caData.actual_week_22},	${caData.actual_week_23},	${caData.actual_week_24},	${caData.actual_week_25},	${caData.actual_week_26},	${caData.actual_week_27},	${caData.actual_week_28},	${caData.actual_week_29},	${caData.actual_week_30},	${caData.actual_week_31},	${caData.actual_week_32},	${caData.actual_week_33},	${caData.actual_week_34},	${caData.actual_week_35},	${caData.actual_week_36},	${caData.actual_week_37},	${caData.actual_week_38},	${caData.actual_week_39},	${caData.actual_week_40},	${caData.actual_week_41},	${caData.actual_week_42},	${caData.actual_week_43},	${caData.actual_week_44},	${caData.actual_week_45},	${caData.actual_week_46},	${caData.actual_week_47},	${caData.actual_week_48},	${caData.actual_week_49},	${caData.actual_week_50},	${caData.actual_week_51},	${caData.actual_week_52}`
+                carrier_alloction += '\r\n';
+            })
+            res(carrier_alloction);
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+
+}
 const carrierAllocationNew = async (req, res) => {
 
     const { containerType, containerName, service, supplier, origin, destination, sailing, type, totalAllocatedSpace, startDate, endDate } = req.body.postData;
@@ -63,8 +79,6 @@ const carrierAllocationNew = async (req, res) => {
     query01 = query01 + `
     VALUES (${values} '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}' );`
 
-
-    console.log('querL', query01);
     try {
         return executeQuery(query01).then((data) => {
             res.status(OK).send({ ca_id: data, message: 'carrier allocation successfully created.' });
@@ -83,6 +97,9 @@ const fetchAllCarrierAllocation = async (req, res) => {
     let isTrue = true;
     try {
         return executeQuery(query).then((data) => {
+            // Sort data based on ca_id
+            data.rows.sort((a, b) => b.ca_id - a.ca_id);
+
             data.rows.forEach((carrierData) => {
                 var key = Object.keys(carrierData).filter(function (key) { return carrierData[key] !== defaultValue });
                 key.forEach((ownKey) => {
