@@ -48,7 +48,7 @@ function getData() {
         executeQuery();
         console.log(data);
     });
- }
+}
 // getData();
 async function readFromN2M(fileName) {
     const lineReader = readLine.createInterface({
@@ -71,6 +71,35 @@ async function readFromN2M(fileName) {
     });
 }
 
+function fnc(line, number) {
+    usersToInsert.push(line);
+}
+
+function readFromN2M(fileName, n, m, func) {
+    const lineReader = readLine.createInterface({
+        input: fs.createReadStream(fileName)
+    })
+
+    let lineNumber = 0;
+    fs.createReadStream(fileName)
+        .pipe(csvParser())
+        .on(
+            'data', (row) => {
+                lineReader.on('line', (line) => {
+                    lineNumber++;
+                    if (lineNumber >= n && lineNumber < m) {
+                        func(row, lineNumber);
+                    }
+                });
+            }
+        ).on('end', () => {
+            console.log(usersToInsert);
+            console.log('Data loaded');
+            executeQuery();
+        })
+}
+
+// readFromN2M('/Users/yashpatel78156gmail.com/ankit/kuulie_ser/kuuli_services/resources/onLoad_Carrier_allocation_01.csv', 5000, 9000, fnc);
 
 const executeQuery = async () => {
     try {
@@ -78,11 +107,12 @@ const executeQuery = async () => {
         let query = User.insert(usersToInsert).toQuery();
         let { rows } = await client.query(query);
         console.log(rows);
+        usersToInsert = []
         client.release()
-        return data;
     } catch (err) {
         return err;
     }
 }
 
-executeQuery();
+
+// executeQuery();

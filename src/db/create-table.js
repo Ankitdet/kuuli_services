@@ -58,13 +58,13 @@ CREATE TABLE IF NOT EXISTS "customer_details" (
 
 CREATE TABLE IF NOT EXISTS "onload_ca" (
 	"onload_id" INTEGER NOT NULL DEFAULT nextval('onload_seq'),
-	"carrier_name" VARCHAR(500) NOT NULL,
+	"carrier_name" VARCHAR(500) DEFAULT NULL,
 	"logo" VARCHAR(500) DEFAULT NULL,
     "service" VARCHAR(500) NOT NULL,
-	"preferred_supplier" VARCHAR(500) NOT NULL,
-	"ports" VARCHAR(500) NOT NULL,
-	"contract_type" VARCHAR(500) NOT NULL,
-	"container_type" VARCHAR(500) NOT NULL,
+	"preferred_supplier" VARCHAR(500) DEFAULT NULL,
+	"ports" VARCHAR(500) DEFAULT NULL,
+	"contract_type" VARCHAR(500) DEFAULT NULL,
+	"container_type" VARCHAR(500) DEFAULT NULL,
 	PRIMARY KEY ("onload_id")
 );
 

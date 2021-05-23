@@ -169,30 +169,38 @@ const onLoadCarrierAllocation = async (req, res) => {
 
 
             data.rows.forEach((ca) => {
-                carrierName.push({
-                    label: ca.carrier_name,
-                    value: ca.carrier_name
-                });
-                service.push({
-                    label: ca.service,
-                    value: ca.service
-                });
 
+                if (ca.carrier_name != '') {
+                    carrierName.push({
+                        label: ca.carrier_name,
+                        value: ca.carrier_name
+                    });
+                    service.push({
+                        label: ca.service,
+                        value: ca.service
+                    });
+                }
 
+                if (ca.ports != "") {
+                    ports.push({
+                        label: ca.ports,
+                        value: ca.ports
+                    })
+                }
 
-                ports.push({
-                    label: ca.ports,
-                    value: ca.ports
-                })
-                contactType.push({
-                    label: ca.contract_type,
-                    value: ca.contract_type
-                })
+                if (ca.contract_type != '') {
+                    contactType.push({
+                        label: ca.contract_type,
+                        value: ca.contract_type
+                    })
+                }
 
-                containerType.push({
-                    label: ca.container_type,
-                    value: ca.container_type
-                })
+                if (containerType != '') {
+                    containerType.push({
+                        label: ca.container_type,
+                        value: ca.container_type
+                    })
+                }
             })
 
             const json = {
