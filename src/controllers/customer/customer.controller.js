@@ -8,6 +8,21 @@ const fetchCustomerDetails = function (req, res) {
     });
 }
 
+const updateCustomerDetails = function (req, res) {
+    logger.info(`updating customer data`)
+    customerService.updateCustomerDetails(req, res).then((response) => {
+        res.send(response);
+    });
+}
+
+const  deleteCustomerDetails = function (req,res) {
+    logger.info(`deleting customer data`)
+    customerService.deleteCustomerDetails(req, res).then((response) => {
+        res.send(response);
+    });
+}
 module.exports = {
-    fetchCustomerDetails : fetchCustomerDetails
+    fetchCustomerDetails : fetchCustomerDetails,
+    updateCustomerDetails :updateCustomerDetails,
+    deleteCustomerDetails
 };

@@ -5,5 +5,8 @@ const customerController = require('../../controllers/customer/customer.controll
 const { fetchCustomerDetails } = require('../../utils/urlConstant');
 
 router.route(fetchCustomerDetails).get(customerController.fetchCustomerDetails);
+router.route(fetchCustomerDetails).post(customerController.updateCustomerDetails);
+router.route(fetchCustomerDetails).delete(customerController.deleteCustomerDetails);
+
 
 module.exports = router;
