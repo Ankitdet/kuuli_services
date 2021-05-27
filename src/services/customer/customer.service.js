@@ -111,8 +111,63 @@ const deleteCustomerDetails = async (req, res) => {
     }
 }
 
+const createCustomerDetails = async (req, res) => {
+    const {
+        customer_id,
+        firstname,
+        lastname,
+        title,
+        department,
+        company_name,
+        revenue,
+        phone_number,
+        mobile_number,
+        fax_number,
+        primary_emailid,
+        secondary_emailid,
+        website,
+        industry,
+        address_1,
+        address_2,
+        pincode,
+        city,
+        country,
+        lead_owner_id,
+        lead_owner_first_name,
+        lead_owner_last_name,
+        lead_owner_email,
+        lead_owner_mobile,
+        lead_location,
+        lead_source,
+        deal_amount,
+        stage,
+        activity,
+        probability,
+        closing_date,
+        business_type
+    } = req.body
+
+
+    let query = `INSERT INTO "customer_details" ("customer_id", "firstname", "lastname", "title", "department", "company_name", 
+    "revenue", "phone_number", "mobile_number", "fax_number", "primary_emailid", "secondary_emailid", "website", "industry", "address_1", 
+    "address_2", "pincode", "city", "country", "lead_owner_id", "lead_owner_first_name", "lead_owner_last_name", "lead_owner_email", 
+    "lead_owner_mobile", "lead_location", "lead_source", "deal_amount", "stage", "activity", "probability", "closing_date", "business_type") 
+    VALUES ('${customer_id}', '${firstname}', '${lastname}', '${title}', '${department}', '${company_name}', 
+    '${revenue}', '${phone_number}', '${mobile_number}', '${fax_number}', '${primary_emailid}', '${secondary_emailid}', '${website}', '${industry}', '${address_1}',
+    '${address_2}', '${pincode}', '${city}', '${country}', '${lead_owner_id}', '${lead_owner_first_name}', '${lead_owner_last_name}', '${lead_owner_email}',
+    '${lead_owner_mobile}', '${lead_location}', '${lead_source}', '${deal_amount}', '${stage}', '${activity}', '${probability}', '${closing_date}', '${business_type}'`;
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ message: `customer data successfully added.` });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+
 module.exports = {
     fetchCustomerDetails: fetchCustomerDetails,
     updateCustomerDetails: updateCustomerDetails,
-    deleteCustomerDetails
+    deleteCustomerDetails,
+    createCustomerDetails
 };

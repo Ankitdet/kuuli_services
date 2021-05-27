@@ -21,8 +21,16 @@ const  deleteCustomerDetails = function (req,res) {
         res.send(response);
     });
 }
+const createCustomerDetails = function (req,res) {
+    logger.info(`creating customer data`)
+    customerService.createCustomerDetails(req, res).then((response) => {
+        res.send(response);
+    });
+}
+
 module.exports = {
     fetchCustomerDetails : fetchCustomerDetails,
     updateCustomerDetails :updateCustomerDetails,
-    deleteCustomerDetails
+    deleteCustomerDetails,
+    createCustomerDetails
 };

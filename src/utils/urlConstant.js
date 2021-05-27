@@ -42,3 +42,4 @@ module.exports.QuotationUpdateBasePath = "/quotation/update"
 // Customer module endpoint
 module.exports.customerbaseUrl= "/customer/v1"
 module.exports.fetchCustomerDetails = "/customer-details"
+module.exports.createCustomerDetails = "/customer-create"
