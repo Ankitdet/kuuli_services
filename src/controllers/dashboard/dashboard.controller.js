@@ -37,10 +37,18 @@ const fetchQuotationById = function (req, res) {
     });
 }
 
+const onLoadQuotations = (req,res) => {
+    logger.info(`onLoadQuotations : ${JSON.stringify(req.query.id)}`)
+    dashboardService.onLoadQuotations(req, res).then((response) => {
+        res.send(response);
+    });
+}
+
 module.exports = {
     getDataFromExcelSheet,
     createQuotation,
     fetchQuotation,
     fetchQuotationById,
-    updateQuotation
+    updateQuotation,
+    onLoadQuotations
 };

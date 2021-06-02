@@ -18,6 +18,17 @@ CREATE SEQUENCE IF NOT EXISTS allocation_id_seq;
 CREATE SEQUENCE IF NOT EXISTS target_id_seq;
 CREATE SEQUENCE IF NOT EXISTS onload_seq;
 CREATE SEQUENCE IF NOT EXISTS customer_seq;
+CREATE SEQUENCE IF NOT EXISTS onload_quotation_seq;
+
+CREATE TABLE IF NOT EXISTS "onload_quotation" (
+	"id" INTEGER NOT NULL DEFAULT nextval('onload_quotation_seq'),
+	"ports" VARCHAR(100) DEFAULT NULL,
+	"container_type" VARCHAR(100) DEFAULT NULL,
+	"incoterms" VARCHAR(100) DEFAULT NULL,
+	"terms" VARCHAR(100) DEFAULT NULL,
+	PRIMARY KEY ("id")
+);
+
 
 CREATE TABLE IF NOT EXISTS "customer_details" (
 	"id" INTEGER NOT NULL DEFAULT nextval('customer_seq'),

@@ -100,11 +100,12 @@ const updateCustomerDetails = async (req, res) => {
 }
 
 const deleteCustomerDetails = async (req, res) => {
-    const { id } = req.body;
-    let query = `delete from customer_details where id=${id}`;
+
+    const { ids } = req.body;
+    let query = `delete from customer_details where id IN (${ids})`;
     try {
         return executeQuery(query).then((data) => {
-            res.status(OK).send({ message: `delete customer having id:${id}` });
+            res.status(OK).send({ message: `delete customer having id:${ids}` });
         });
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });
@@ -165,9 +166,23 @@ const createCustomerDetails = async (req, res) => {
     }
 }
 
+const searchCustomerById = async (req, res) => {
+    const { id } = req.body;
+
+    let query = `select * from customer_details where id=${id}`;
+    try {
+        return executeQuery(query).then((data) => {
+            res.status(OK).send({ data: data.rows, totalUsers: data.rows.length, message: 'customer data fetched.' });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+
 module.exports = {
     fetchCustomerDetails: fetchCustomerDetails,
     updateCustomerDetails: updateCustomerDetails,
     deleteCustomerDetails,
-    createCustomerDetails
+    createCustomerDetails,
+    searchCustomerById
 };

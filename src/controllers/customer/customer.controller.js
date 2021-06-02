@@ -27,10 +27,17 @@ const createCustomerDetails = function (req,res) {
         res.send(response);
     });
 }
+const searchCustomerById = function (req,res) {
+    logger.info(`fetching customer data`)
+    customerService.searchCustomerById(req, res).then((response) => {
+        res.send(response);
+    }); 
+}
 
 module.exports = {
     fetchCustomerDetails : fetchCustomerDetails,
     updateCustomerDetails :updateCustomerDetails,
     deleteCustomerDetails,
+    searchCustomerById,
     createCustomerDetails
 };

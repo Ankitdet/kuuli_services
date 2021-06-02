@@ -25,20 +25,17 @@ pool.connect((err, client, done) => {
 });
 
 let User = sql.define({
-    name: 'onload_ca',
+    name: 'onload_quotation',
     columns: [
-        "carrier_name",
-        "logo",
-        "service",
-        "preferred_supplier",
         "ports",
-        "contract_type",
         "container_type",
+        "incoterms",
+        "terms",
     ]
 });
 let usersToInsert = [];
 function getData() {
-    let filePath = "/resources/onLoad_Carrier_allocation_01.csv";
+    let filePath = "/resources/onload_qoutation_data.csv";
     new Promise((resolve, rej) => {
         readFromN2M(path.resolve(__dirname) + filePath).then((data) => {
             resolve(data);
@@ -57,7 +54,12 @@ async function readFromN2M(fileName) {
     return new Promise((res, rej) => {
         usersToInsert = [];
         fs.createReadStream(fileName)
-            .pipe(csvParser())
+            .pipe(csvParser([
+                "ports",
+                "container Type",
+                "incoterms",
+                "terms"
+            ]))
             .on('data', (row) => {
                 usersToInsert.push(row);
             }).on('end', () => {
@@ -99,12 +101,13 @@ function readFromN2M(fileName, n, m, func) {
         })
 }
 
- readFromN2M('/Users/ankitdetroja/dev/temp_dir/kuuli_services/resources/onLoad_Carrier_allocation_01.csv', 1, 500, fnc);
+readFromN2M('./resources/onload_qoutation_data.csv', 1, 500, fnc);
 
 const executeQuery = async () => {
     try {
         const client = await pool.connect();
         let query = User.insert(usersToInsert).toQuery();
+        console.log('query', query)
         let { rows } = await client.query(query);
         console.log(rows);
         usersToInsert = []
