@@ -8,6 +8,60 @@ const executeQuery = require('../../db/connect');
 var readLine = require('readline');
 const { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } = require('../../utils/apiStatus');
 
+const onLoadQuotations = async (req, res) => {
+    let query = `SELECT * FROM onload_quotation`;
+
+    try {
+        return executeQuery(query).then((data) => {
+
+            let containerType = []
+            let incoterms = []
+            let terms = []
+            let ports = []
+
+            data.rows.forEach((ca) => {
+                if (ca.container_type != '') {
+                    containerType.push({
+                        label: ca.container_type,
+                        value: ca.container_type
+                    });
+                }
+                if (ca.ports != "") {
+                    ports.push({
+                        label: ca.ports,
+                        value: ca.ports
+                    })
+                }
+
+                if (ca.incoterms != '') {
+                    incoterms.push({
+                        label: ca.incoterms,
+                        value: ca.incoterms
+                    })
+                }
+
+                if (ca.terms != '') {
+                    terms.push({
+                        label: ca.terms,
+                        value: ca.terms
+                    })
+                }
+            })
+
+            let json = {
+                "portOfLoading": ports,
+                "portOfDischarge": ports,
+                "containerType": containerType,
+                "incoterms": incoterms,
+                "terms": terms
+            }
+            res.status(OK).send({ data: json, message: 'fetched.' });
+        });
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+
 const getDataFromExcelSheet = async (req, res) => {
 
 }
@@ -73,7 +127,7 @@ const fetchQuotationById = async (req, res) => {
     }
 }
 
-var data = [] ;
+var data = [];
 function fnc(line, number) {
     data.push(line);
 }
@@ -109,5 +163,6 @@ module.exports = {
     createQuotation,
     fetchQuotationById,
     updateQuotation,
-    fetchQuotation
+    fetchQuotation,
+    onLoadQuotations
 }

@@ -18,6 +18,9 @@ ALTER TABLE customer_details ALTER COLUMN revenue   SET DEFAULT NOT NULL;
 ALTER TABLE customer_details ALTER COLUMN phone_number  SET DEFAULT NOT NULL;
 ALTER TABLE customer_details ALTER COLUMN mobile_number  SET DEFAULT NOT NULL;
 
+
+
+ALTER TABLE onload_ca ALTER COLUMN service SET DEFAULT NOT NULL;
 `
 
 pool.connect((err, client, done) => {

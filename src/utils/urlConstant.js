@@ -38,6 +38,7 @@ module.exports.QuotationBasePath = "/quotation/fetch"
 module.exports.QuotationBasePathById = "/quotation/fetchById"
 module.exports.QuotationCreateBasePath = "/quotation/create"
 module.exports.QuotationUpdateBasePath = "/quotation/update"
+module.exports.OnLoadQoutation = "/quotation/on-load"
 
 // Customer module endpoint
 module.exports.customerbaseUrl= "/customer/v1"
