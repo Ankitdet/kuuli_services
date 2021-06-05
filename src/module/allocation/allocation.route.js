@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-const allocationController = require('../../controllers/allocation/allocation.controller');
+const allocationController = require('./allocation.controller');
 const { carrierAllocation, downloadExcelPath, fetchCarrierAllocation, carrierAllocationDefineTargetValue, onLoadCarrierAllocation, updateTargetValues } = require('../../utils/urlConstant');
 
 // Create new carrier allocation (When click on ContinueButton)

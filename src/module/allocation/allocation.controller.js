@@ -1,5 +1,5 @@
 const logger = require('../../logger/logger');
-const allocationService = require('../../services/allocation/allocation.service');
+const allocationService = require('./allocation.service');
 require('dotenv').config();
 
 const carrierAllocationNew = function (req, res) {

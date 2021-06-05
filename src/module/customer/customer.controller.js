@@ -1,4 +1,4 @@
-const customerService = require('../../services/customer/customer.service');
+const customerService = require('./customer.service');
 const logger = require('../../logger/logger');
 
 const fetchCustomerDetails = function (req, res) {
