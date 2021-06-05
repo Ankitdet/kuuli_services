@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 
-const dashboardController = require('../../controllers/dashboard/dashboard.controller');
-const { dashboardBasePath, QuotationBasePath, QuotationCreateBasePath, QuotationUpdateBasePath, QuotationBasePathById,  OnLoadQoutation} = require('../../utils/urlConstant');
+const dashboardController = require('./dashboard.controller');
+const { dashboardBasePath, QuotationBasePath, QuotationCreateBasePath, QuotationUpdateBasePath, QuotationBasePathById } = require('../../utils/urlConstant');
 
 router.route(dashboardBasePath).post(dashboardController.getDataFromExcelSheet);
 

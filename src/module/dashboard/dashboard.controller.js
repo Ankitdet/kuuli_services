@@ -1,4 +1,4 @@
-const dashboardService = require('../../services/dashboard/dashboard.service');
+const dashboardService = require('./dashboard.service');
 const logger = require('../../logger/logger');
 require('dotenv').config();
 
