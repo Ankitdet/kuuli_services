@@ -39,7 +39,7 @@ const carrierAllocationNew = async (req, res) => {
     if (!isValid) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: 'startdate and enddate should not be more than 52 weeks' });
     }
-    Date.prototype.getWeek = function () {
+    Date.prototype.getWeek = () => {
         var onejan = new Date(this.getFullYear(), 0, 1);
         var today = new Date(this.getFullYear(), this.getMonth(), this.getDate());
         var dayOfYear = ((today - onejan + 86400000) / 86400000);
@@ -101,7 +101,7 @@ const fetchAllCarrierAllocation = async (req, res) => {
             data.rows.sort((a, b) => b.ca_id - a.ca_id);
 
             data.rows.forEach((carrierData) => {
-                var key = Object.keys(carrierData).filter(function (key) { return carrierData[key] !== defaultValue });
+                var key = Object.keys(carrierData).filter((key) => { return carrierData[key] !== defaultValue });
                 key.forEach((ownKey) => {
                     if (/^week/.test(ownKey)) {
                         weekDetails += `{"${ownKey}" : "${carrierData[ownKey]}"},`;
