@@ -8,6 +8,7 @@ const fetchCustomerDetails = async (req, res) => {
 
     try {
         return executeQuery(query).then((data) => {
+
             res.status(OK).send({ data: data.rows, totalUsers: data.rows.length, message: 'customer data fetched.' });
         });
     } catch (err) {
