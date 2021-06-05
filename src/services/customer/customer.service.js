@@ -167,11 +167,11 @@ const createCustomerDetails = async (req, res) => {
 }
 
 const searchCustomerById = async (req, res) => {
-    const { id } = req.body;
-
+    const id = req.params['id'] ;
     let query = `select * from customer_details where id=${id}`;
     try {
         return executeQuery(query).then((data) => {
+            console.log('query::',query)
             res.status(OK).send({ data: data.rows, totalUsers: data.rows.length, message: 'customer data fetched.' });
         });
     } catch (err) {
