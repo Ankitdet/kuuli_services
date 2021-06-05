@@ -68,7 +68,7 @@ const createQuotation = async (req, res) => {
             "incoterms", "terms", "created_on", "customer_id") 
             VALUES ('${origin}', '${destination}', '${containerName}', '${containerType}', 
             '${twentyFeetContainer}', '${fourtyFeetContainer}', '${fourtyFeetHighCube}', 
-            '${moment(cargoReadyDate).format('YYYY-MM-DD HH:mm:ss')}', '${incoterms}', 
+            '${cargoReadyDate}', '${incoterms}', 
             '${terms}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}', '${customerId}')`
   try {
     return executeQuery(query).then((data) => {
@@ -104,7 +104,7 @@ const updateQuotation = async (req, res) => {
             "ft_ft_container"='${fourtyFeetContainer}', 
             "ft_ft_high_cube"='${fourtyFeetHighCube}',
             "customer_id"='${customerId}',
-            "cargo_ready_date"='${moment(cargoReadyDate).format('YYYY-MM-DD HH:mm:ss')}', 
+            "cargo_ready_date"='${cargoReadyDate}', 
             "incoterms"='${incoterms}', 
             "terms"='${terms}', 
             "updated_on"='${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}' 
