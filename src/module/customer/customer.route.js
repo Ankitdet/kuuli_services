@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 
 const customerController = require('./customer.controller');
-const { fetchCustomerDetails,createCustomerDetails } = require('../../utils/urlConstant');
+const { fetchCustomerDetails,createCustomerDetails,searchCustomerById } = require('../../utils/urlConstant');
 
 router.route(fetchCustomerDetails).get(customerController.fetchCustomerDetails);
 router.route(fetchCustomerDetails).post(customerController.updateCustomerDetails);

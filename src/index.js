@@ -71,7 +71,7 @@ app.get("/api/external", checkJwt, (req, res) => {
     });
 });
 
-const routes = require('./index.route');
+const routes = require('./routers');
 const logger = require('./logger/logger');
 app.use(routes);
 
