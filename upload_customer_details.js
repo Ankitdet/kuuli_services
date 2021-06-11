@@ -27,7 +27,6 @@ pool.connect((err, client, done) => {
 let User = sql.define({
     name: 'customer_details',
     columns: [
-        "customer_id",
         "firstname",
         "lastname",
         "title",
@@ -82,7 +81,6 @@ async function readFromN2M(fileName) {
         usersToInsert = [];
         fs.createReadStream(fileName)
             .pipe(csvParser([
-                "customer_id",
                 "firstname",
                 "lastname",
                 "title",

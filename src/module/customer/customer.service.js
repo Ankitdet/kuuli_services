@@ -4,7 +4,7 @@ const { OK, INTERNAL_SERVER_ERROR } = require('../../utils/apiStatus');
 
 const fetchCustomerDetails = async (req, res) => {
 
-    let query = `select * from customer_details`;
+    let query = `select * from customer_details order by customer_id DESC`;
 
     try {
         return executeQuery(query).then((data) => {
