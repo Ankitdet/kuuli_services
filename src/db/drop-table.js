@@ -9,7 +9,7 @@ config.ssl = {
 const pool = new Pool(config)
 
 const query = `
-    DROP TABLE carrier_allocation_new;
+    DROP TABLE customer_details;
 `
 
 pool.connect((err, client, done) => {
