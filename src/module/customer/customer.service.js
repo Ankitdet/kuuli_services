@@ -56,8 +56,7 @@ const updateCustomerDetails = async (req, res) => {
 
     let query = `UPDATE customer_details 
             set 
-            "id" = ${id},
-            "customer_id" = '${customer_id}',
+            "customer_id" = ${id},
             "firstname" = '${firstname}',
             "lastname" = '${lastname}',
             "title" = '${title}',
@@ -115,7 +114,6 @@ const deleteCustomerDetails = async (req, res) => {
 
 const createCustomerDetails = async (req, res) => {
     const {
-        customer_id,
         firstname,
         lastname,
         title,
@@ -150,11 +148,11 @@ const createCustomerDetails = async (req, res) => {
     } = req.body
 
 
-    let query = `INSERT INTO "customer_details" ("customer_id", "firstname", "lastname", "title", "department", "company_name", 
+    let query = `INSERT INTO "customer_details" ("firstname", "lastname", "title", "department", "company_name", 
     "revenue", "phone_number", "mobile_number", "fax_number", "primary_emailid", "secondary_emailid", "website", "industry", "address_1", 
     "address_2", "pincode", "city", "country", "lead_owner_id", "lead_owner_first_name", "lead_owner_last_name", "lead_owner_email", 
     "lead_owner_mobile", "lead_location", "lead_source", "deal_amount", "stage", "activity", "probability", "closing_date", "business_type") 
-    VALUES ('${customer_id}', '${firstname}', '${lastname}', '${title}', '${department}', '${company_name}', 
+    VALUES ('${firstname}', '${lastname}', '${title}', '${department}', '${company_name}', 
     '${revenue}', '${phone_number}', '${mobile_number}', '${fax_number}', '${primary_emailid}', '${secondary_emailid}', '${website}', '${industry}', '${address_1}',
     '${address_2}', '${pincode}', '${city}', '${country}', '${lead_owner_id}', '${lead_owner_first_name}', '${lead_owner_last_name}', '${lead_owner_email}',
     '${lead_owner_mobile}', '${lead_location}', '${lead_source}', '${deal_amount}', '${stage}', '${activity}', '${probability}', '${closing_date}', '${business_type}')`;
@@ -169,7 +167,7 @@ const createCustomerDetails = async (req, res) => {
 
 const searchCustomerById = async (req, res) => {
     const id = req.params['id'] ;
-    let query = `select * from customer_details where id=${id}`;
+    let query = `select * from customer_details where customer_id=${id}`;
     try {
         return executeQuery(query).then((data) => {
             console.log('query::',query)

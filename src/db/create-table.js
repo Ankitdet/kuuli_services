@@ -31,8 +31,7 @@ CREATE TABLE IF NOT EXISTS "onload_quotation" (
 
 
 CREATE TABLE IF NOT EXISTS "customer_details" (
-	"id" INTEGER NOT NULL DEFAULT nextval('customer_seq'),
-	"customer_id" VARCHAR(500) DEFAULT NULL,
+	"customer_id" INTEGER NOT NULL DEFAULT nextval('customer_seq'),
 	"firstname" VARCHAR(500) DEFAULT NULL,
     "lastname" VARCHAR(500) DEFAULT NULL,
 	"title" VARCHAR(500) DEFAULT NULL,
@@ -64,7 +63,7 @@ CREATE TABLE IF NOT EXISTS "customer_details" (
 	"probability" VARCHAR(500) DEFAULT NULL,
 	"closing_date" VARCHAR(500) DEFAULT NULL,
 	"business_type" VARCHAR(500) DEFAULT NULL,
-	PRIMARY KEY ("id")
+	PRIMARY KEY ("customer_id")
 );
 
 CREATE TABLE IF NOT EXISTS "onload_ca" (
