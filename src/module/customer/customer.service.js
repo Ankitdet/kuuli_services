@@ -157,7 +157,7 @@ const createCustomerDetails = async (req, res) => {
     VALUES ('${customer_id}', '${firstname}', '${lastname}', '${title}', '${department}', '${company_name}', 
     '${revenue}', '${phone_number}', '${mobile_number}', '${fax_number}', '${primary_emailid}', '${secondary_emailid}', '${website}', '${industry}', '${address_1}',
     '${address_2}', '${pincode}', '${city}', '${country}', '${lead_owner_id}', '${lead_owner_first_name}', '${lead_owner_last_name}', '${lead_owner_email}',
-    '${lead_owner_mobile}', '${lead_location}', '${lead_source}', '${deal_amount}', '${stage}', '${activity}', '${probability}', '${closing_date}', '${business_type}'`;
+    '${lead_owner_mobile}', '${lead_location}', '${lead_source}', '${deal_amount}', '${stage}', '${activity}', '${probability}', '${closing_date}', '${business_type}')`;
     try {
         return executeQuery(query).then((data) => {
             res.status(OK).send({ message: `customer data successfully added.` });
