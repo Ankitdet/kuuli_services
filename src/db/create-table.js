@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS "quotation" (
 	"q_id" INTEGER NOT NULL DEFAULT nextval('quotation_id_seq'),
 	"origin" VARCHAR(500) NOT NULL,
 	"destination" VARCHAR(500) NOT NULL,
-	"container_name" VARCHAR(500) NOT NULL,
+	"contract_name" VARCHAR(500) NOT NULL,
 	"container_type" VARCHAR(500) NOT NULL,
 	"container_size" VARCHAR(500) NOT NULL,
 	"container_quantity" VARCHAR(500) NOT NULL,

@@ -62,17 +62,17 @@ const getDataFromExcelSheet = async (req, res) => {
 }
 
 const createQuotation = async (req, res) => {
-  const { origin, destination, containerName, containerType, twentyFeetContainer, fourtyFeetContainer, fourtyFeetHighCube, cargoReadyDate, incoterms, terms, customerId} = req.body
-  const query = `INSERT INTO quotation("origin", "destination", "container_name", "container_type", 
+  const { origin, destination, contractName, containerType, twentyFeetContainer, exportorimport, fourtyFeetContainer, fourtyFeetHighCube, cargoReadyDate, incoterms, terms, customerId } = req.body
+  const query = `INSERT INTO quotation("origin", "destination", "contract_name", "container_type", "exportorimport",
             "tw_ft_container", "ft_ft_container", "ft_ft_high_cube", "cargo_ready_date",
             "incoterms", "terms", "created_on", "customer_id") 
-            VALUES ('${origin}', '${destination}', '${containerName}', '${containerType}', 
+            VALUES ('${origin}', '${destination}', '${contractName}', '${containerType}','${exportorimport}',
             '${twentyFeetContainer}', '${fourtyFeetContainer}', '${fourtyFeetHighCube}', 
             '${cargoReadyDate}', '${incoterms}', 
             '${terms}', '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}', '${customerId}')`
   try {
     return executeQuery(query).then((data) => {
-        console.log('query:',query);
+      console.log('query:', query);
       res.status(OK).send({ message: 'Quotation successfully inserted.' })
     })
   } catch (err) {
@@ -92,13 +92,14 @@ const fetchQuotation = async (req, res) => {
 }
 
 const updateQuotation = async (req, res) => {
-  const { qId, origin, destination, containerName, containerType, twentyFeetContainer, fourtyFeetContainer, fourtyFeetHighCube, cargoReadyDate, incoterms, terms, customerId } = req.body
+  const { qId, origin, destination, contractName, exportorimport, containerType, twentyFeetContainer, fourtyFeetContainer, fourtyFeetHighCube, cargoReadyDate, incoterms, terms, customerId } = req.body
   if (!qId) res.status(NOT_FOUND).send({ message: 'Id not found during update operation.' })
   const query = `UPDATE "quotation" 
             SET 
             "origin"='${origin}', 
             "destination"='${destination}', 
-            "container_name"='${containerName}', 
+            "contract_name"='${contractName}', 
+            "exportorimport"='${exportorimport}',
             "container_type"='${containerType}', 
             "tw_ft_container"='${twentyFeetContainer}', 
             "ft_ft_container"='${fourtyFeetContainer}', 
