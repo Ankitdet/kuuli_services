@@ -13,6 +13,84 @@ const downloadExcel = async (req, res) => {
     });
 }
 
+const quotationCompanyDetails = (req, res) => {
+    const ANL = {
+        "companyName": "ANL",
+        "companyLogo": "Logo.png",
+        "quotationNumber": "A19943",
+        "validFrom": "1st April 2021",
+        "validTo": "30th April 2021",
+        "contractNumber": "ANL234",
+        "portOfLoading": "Shangai",
+        "portOfDischarge": "Melbourne",
+        "getAQuote": [
+            {
+                "headerLabel": "",
+                "label": "oceanFreight",
+                "value": [
+                    "$1150",
+                    "$1150",
+                    "$1150"
+                ],
+
+            },
+            {
+                "headerLabel": "Origin Charges",
+                "label": "bunkerAdjustmentFactor",
+                "value": [
+                    "$1150",
+                    "$1150",
+                    "$1150"
+                ],
+
+            },
+            {
+                "headerLabel": "Origin Charges1",
+                "label": "bunkerAdjustmentFactor",
+                "value": [
+                    "$1150",
+                    "$1150",
+                    "$1150"
+                ],
+
+            },
+            {
+                "headerLabel": "",
+                "label": "Total",
+                "value": [
+                    "$1150",
+                    "$1150",
+                    "$1150"
+                ],
+
+            },
+        ],
+        "buyOrSell": {
+            "freightCharges": [
+                {
+                    "label": "Freight Charges",
+                    "value": "USD 1149.00"
+                },
+                {
+                    "label": "Freight Charges",
+                    "value": "USD 1149.00"
+                }
+            ],
+            "originCharges": [
+                {
+                    "label": "Freight Charges",
+                    "value": "USD 1149.00"
+                },
+                {
+                    "label": "Freight Charges",
+                    "value": "USD 1149.00"
+                }
+            ]
+        }
+    }
+    res.send(ANL)
+}
+
 // Excel download
 const fetchAlltheCarrierAllocation = async (res) => {
     const query = `select * from carrier_allocation_new`;
@@ -311,5 +389,6 @@ module.exports = {
     fetchAllCarrierAllocation,
     onLoadCarrierAllocation,
     updateTargetValues,
-    downloadExcel
+    downloadExcel,
+    quotationCompanyDetails
 };

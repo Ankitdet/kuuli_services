@@ -22,6 +22,12 @@ const onLoadCarrierAllocation = (req, res) => {
     allocationService.onLoadCarrierAllocation(req, res).then((response) => res.send(response))
 }
 
+const quotationCompanyDetails = (req, res) => {
+    logger.info(`Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // allocationService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    allocationService.quotationCompanyDetails(req, res)
+}
+
 const updateTargetValues = (req, res) => {
     logger.info(`Update target values of Carrier allocation ${JSON.stringify(req.body)}`)
     allocationService.updateTargetValues(req, res).then((response) => res.send(response))
@@ -30,11 +36,13 @@ const downloadExcel = (req, res) => {
     logger.info(`Download excel aPI call.`);
     allocationService.downloadExcel(res, res).then((response) => response)
 }
+
 module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     carrierAllocationNewDefineTargetValues,
     onLoadCarrierAllocation,
     updateTargetValues,
-    downloadExcel
+    downloadExcel,
+    quotationCompanyDetails
 };

@@ -30,7 +30,7 @@ module.exports.onLoadCarrierAllocation = "/carrier/onload";
 
 module.exports.downloadExcelPath = "/carrier/download";
 
-
+module.exports.quotationCompanyDetails = "/quotation-details";
 
 //Dashboard Endpoint
 module.exports.dashboardBasePath = "/dashboard"
@@ -41,7 +41,7 @@ module.exports.QuotationUpdateBasePath = "/quotation/update"
 module.exports.OnLoadQoutation = "/quotation/on-load"
 
 // Customer module endpoint
-module.exports.customerbaseUrl= "/customer/v1"
+module.exports.customerbaseUrl = "/customer/v1"
 module.exports.fetchCustomerDetails = "/customer-details"
 module.exports.createCustomerDetails = "/customer-create"
 module.exports.searchCustomerById = "/customer-details/:id"
