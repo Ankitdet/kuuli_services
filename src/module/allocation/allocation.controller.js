@@ -28,6 +28,16 @@ const quotationCompanyDetails = (req, res) => {
     allocationService.quotationCompanyDetails(req, res)
 }
 
+const insertQuotationCompanyDetails = (req, res) => {
+    logger.info(`Insert Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // allocationService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    allocationService.insertQuotationCompanyDetails(req, res)
+}
+const updateQuotationCompanyDetails = (req, res) => {
+    logger.info(`Update Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // allocationService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    allocationService.updateQuotationCompanyDetails(req, res)
+}
 const updateTargetValues = (req, res) => {
     logger.info(`Update target values of Carrier allocation ${JSON.stringify(req.body)}`)
     allocationService.updateTargetValues(req, res).then((response) => res.send(response))
@@ -44,5 +54,7 @@ module.exports = {
     onLoadCarrierAllocation,
     updateTargetValues,
     downloadExcel,
-    quotationCompanyDetails
+    quotationCompanyDetails,
+    insertQuotationCompanyDetails,
+    updateQuotationCompanyDetails
 };
