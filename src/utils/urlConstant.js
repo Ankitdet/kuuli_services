@@ -31,7 +31,8 @@ module.exports.onLoadCarrierAllocation = "/carrier/onload";
 module.exports.downloadExcelPath = "/carrier/download";
 
 module.exports.quotationCompanyDetails = "/quotation-details";
-
+module.exports.insertQuotationCompanyDetails = "/insert-quotation-details";
+module.exports.updateQuotationCompanyDetails = "/update-quotation-details";
 //Dashboard Endpoint
 module.exports.dashboardBasePath = "/dashboard"
 module.exports.QuotationBasePath = "/quotation/fetch"
