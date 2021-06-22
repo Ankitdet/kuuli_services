@@ -22,9 +22,4 @@ router.route(onLoadCarrierAllocation).get(allocationController.onLoadCarrierAllo
 router.route(downloadExcelPath).get(allocationController.downloadExcel);
 
 // Get quotation details
-router.route(quotationCompanyDetails).get(allocationController.quotationCompanyDetails);
-
-router.route(insertQuotationCompanyDetails).post(allocationController.insertQuotationCompanyDetails);
-
-router.route(updateQuotationCompanyDetails).post(allocationController.updateQuotationCompanyDetails);
 module.exports = router;
