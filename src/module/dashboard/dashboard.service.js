@@ -475,7 +475,6 @@ const quotationCompanyDetails = async (req, res) => {
 
 const insertQuotationCompanyDetails = async (req, res) => {
   const {
-    id,
     company_name,
     company_logo,
     quotation_number,
@@ -517,7 +516,7 @@ const insertQuotationCompanyDetails = async (req, res) => {
 
   const query = `
         INSERT INTO quotation_company_details VALUES (
-            ${id},
+            DEFAULT,         
             '${company_name}',
             '${company_logo}',
             '${quotation_number}',

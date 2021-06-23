@@ -19,6 +19,7 @@ CREATE SEQUENCE IF NOT EXISTS target_id_seq;
 CREATE SEQUENCE IF NOT EXISTS onload_seq;
 CREATE SEQUENCE IF NOT EXISTS customer_seq;
 CREATE SEQUENCE IF NOT EXISTS onload_quotation_seq;
+CREATE SEQUENCE IF NOT EXISTS qcd_seq;
 
 CREATE TABLE IF NOT EXISTS "onload_quotation" (
 	"id" INTEGER NOT NULL DEFAULT nextval('onload_quotation_seq'),
@@ -304,7 +305,50 @@ CREATE TABLE IF NOT EXISTS "carrier_allocation_new" (
 	"actual_week_52" VARCHAR(50) DEFAULT -1 NULL,
 	PRIMARY KEY ("ca_id")
 );
+
+CREATE TABLE IF NOT EXISTS "quotation_company_details" (
+	"id" INTEGER NOT NULL DEFAULT nextval('qcd_seq'),
+	"company_name" VARCHAR(500),
+	"company_logo" VARCHAR(500),
+	"quotation_number" VARCHAR(500),
+	"valid_from" VARCHAR(500),
+	"valid_to" VARCHAR(500),
+	"contract_number" VARCHAR(500),
+	"port_of_loading" VARCHAR(500),
+	"port_of_discharge" VARCHAR(500),
+	"quote_20_oceanFreight" VARCHAR(500),
+	"quote_40_oceanFreight" VARCHAR(500),
+	"quote_HC_oceanFreight" VARCHAR(500),
+	"quote_20_bunkerAdjustmentFactor" VARCHAR(500),
+	"quote_40_bunkerAdjustmentFactor" VARCHAR(500),
+	"quote_HC_bunkerAdjustmentFactor" VARCHAR(500),
+	"quote_oc_20_originTerminalHandlingCharges" VARCHAR(500),
+	"quote_oc_40_originTerminalHandlingCharges" VARCHAR(500),
+	"quote_oc_HC_originTerminalHandlingCharges" VARCHAR(500),
+	"quote_oc_20_originISPS" VARCHAR(500),
+	"quote_oc_40_originISPS" VARCHAR(500),
+	"quote_oc_HC_originISPS" VARCHAR(500),
+	"quote_oc_20_sealFee" VARCHAR(500),
+	"quote_oc_40_sealFee" VARCHAR(500),
+	"quote_oc_HC_sealFee" VARCHAR(500),
+	"quote_dc_20_destinationTerminalHandlingCharges" VARCHAR(500),
+	"quote_dc_40_destinationTerminalHandlingCharges" VARCHAR(500),
+	"quote_dc_HC_destinationTerminalHandlingCharges" VARCHAR(500),
+	"quote_dc_20_destinationISPS" VARCHAR(500),
+	"quote_dc_40_destinationISPS" VARCHAR(500),
+	"quote_dc_HC_destinationISPS" VARCHAR(500),
+	"quote_20_total" VARCHAR(500),
+	"quote_40_total" VARCHAR(500),
+	"quote_HC_total" VARCHAR(500),
+	"buyOrSell_fc_baseRate" VARCHAR(500),
+	"buyOrSell_fc_sulphurSurcharge" VARCHAR(500),
+	"buyOrSell_dc_destinationTerminalHandlingCharges" VARCHAR(500),
+	"buyOrSell_oc_exportServiceCharge" VARCHAR(500),
+	"buyOrSell_oc_destinationTerminalHandlingCharges" VARCHAR(500),
+	PRIMARY KEY("id")
+);
 `
+
 
 pool.connect((err, client, done) => {
 	client.query(query, (err, res) => {
