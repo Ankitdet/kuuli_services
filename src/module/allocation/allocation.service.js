@@ -12,7 +12,6 @@ const downloadExcel = async (req, res) => {
         res.end();
     });
 }
-
 // Excel download
 const fetchAlltheCarrierAllocation = async (res) => {
     const query = `select * from carrier_allocation_new`;
@@ -29,7 +28,6 @@ const fetchAlltheCarrierAllocation = async (res) => {
     } catch (err) {
         res.status(INTERNAL_SERVER_ERROR).send({ message: err });
     }
-
 }
 const carrierAllocationNew = async (req, res) => {
 
@@ -311,5 +309,5 @@ module.exports = {
     fetchAllCarrierAllocation,
     onLoadCarrierAllocation,
     updateTargetValues,
-    downloadExcel
+    downloadExcel,
 };
