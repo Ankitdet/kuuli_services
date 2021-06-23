@@ -138,11 +138,537 @@ const fetchQuotationById = async (req, res) => {
   }
 }
 
+const quotationCompanyDetails = async (req, res) => {
+  const ANL = {
+    "companyName": "ANL",
+    "companyLogo": "Logo.png",
+    "quotationNumber": "A19943",
+    "validFrom": "1st April 2021",
+    "validTo": "30th April 2021",
+    "contractNumber": "ANL234",
+    "portOfLoading": "Shangai",
+    "portOfDischarge": "Melbourne",
+    "getAQuote": [
+      {
+        "headerLabel": "",
+        "label": "oceanFreight",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "",
+        "label": "bunkerAdjustmentFactor",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "originCharges",
+        "label": "originTerminalHandlingCharges",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "originCharges",
+        "label": "originISPS",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "originCharges",
+        "label": "sealFee",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "destinationCharges",
+        "label": "destinationTerminalHandlingCharges",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "destinationCharges",
+        "label": "destinationISPS",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+      {
+        "headerLabel": "",
+        "label": "total",
+        "value": [
+          {
+            "port20": "$1150",
+          },
+          {
+            "port40": "$1150",
+          },
+          {
+            "portHC": "$1150",
+          }
+        ],
+      },
+    ],
+    "buyOrSell": {
+      "freightCharges": [
+        {
+          "label": "baseRate",
+          "value": "1149"
+        },
+        {
+          "label": "sulphurSurcharge",
+          "value": "1149"
+        }
+      ],
+      "destinationCharges": [
+        {
+          "label": "destinationTerminalHandlingCharge",
+          "value": "1149"
+        },
+      ],
+      "originCharges": [
+        {
+          "label": "exportServiceCharge",
+          "value": "1149"
+        },
+        {
+          "label": "destinationTerminalHandlingCharge",
+          "value": "1149"
+        },
+      ],
+    }
+  }
+  const query = `select * from quotation_company_details`;
+  try {
+    return executeQuery(query).then((data) => {
+      const allData = []
+      data.rows.forEach((row) => {
+        allData.push({
+          "id": row.id,
+          "companyName": row.company_name,
+          "companyLogo": row.company_logo,
+          "quotationNumber": row.quotation_number,
+          "validFrom": row.valid_from,
+          "validTo": row.valid_to,
+          "contractNumber": row.contract_number,
+          "portOfLoading": row.port_of_loading,
+          "portOfDischarge": row.port_of_discharge,
+          "getAQuote": [
+            {
+              "headerLabel": "",
+              "label": "oceanFreight",
+              "value": [
+                {
+                  "port20": row.quote_20_oceanfreight,
+                },
+                {
+                  "port40": row.quote_40_oceanfreight,
+                },
+                {
+                  "portHC": row.quote_hc_oceanfreight,
+                }
+              ],
+            },
+            {
+              "headerLabel": "",
+              "label": "bunkerAdjustmentFactor",
+              "value": [
+                {
+                  "port20": row.quote_20_bunkeradjustmentfactor,
+                },
+                {
+                  "port40": row.quote_40_bunkeradjustmentfactor,
+                },
+                {
+                  "portHC": row.quote_hc_bunkeradjustmentfactor,
+                }
+              ],
+            },
+            {
+              "headerLabel": "originCharges",
+              "label": "originTerminalHandlingCharges",
+              "value": [
+                {
+                  "port20": row.quote_oc_20_originterminalhandlingcharges,
+                },
+                {
+                  "port40": row.quote_oc_40_originterminalhandlingcharges,
+                },
+                {
+                  "portHC": row.quote_oc_hc_originterminalhandlingcharges,
+                }
+              ],
+            },
+            {
+              "headerLabel": "originCharges",
+              "label": "originISPS",
+              "value": [
+                {
+                  "port20": row.quote_oc_20_originisps,
+                },
+                {
+                  "port40": row.quote_oc_40_originisps,
+                },
+                {
+                  "portHC": row.quote_oc_hc_originisps,
+                }
+              ],
+            },
+            {
+              "headerLabel": "originCharges",
+              "label": "sealFee",
+              "value": [
+                {
+                  "port20": row.quote_oc_20_sealfee,
+                },
+                {
+                  "port40": row.quote_oc_40_sealfee,
+                },
+                {
+                  "portHC": row.quote_oc_hc_sealfee,
+                }
+              ],
+            },
+            {
+              "headerLabel": "destinationCharges",
+              "label": "destinationTerminalHandlingCharges",
+              "value": [
+                {
+                  "port20": row.quote_dc_20_destinationterminalhandlingcharges,
+                },
+                {
+                  "port40": row.quote_dc_40_destinationterminalhandlingcharges,
+                },
+                {
+                  "portHC": row.quote_dc_hc_destinationterminalhandlingcharges,
+                }
+              ],
+            },
+            {
+              "headerLabel": "destinationCharges",
+              "label": "destinationISPS",
+              "value": [
+                {
+                  "port20": row.quote_dc_20_destinationisps,
+                },
+                {
+                  "port40": row.quote_dc_40_destinationisps,
+                },
+                {
+                  "portHC": row.quote_dc_hc_destinationisps,
+                }
+              ],
+            },
+            {
+              "headerLabel": "",
+              "label": "total",
+              "value": [
+                {
+                  "port20": row.quote_20_total,
+                },
+                {
+                  "port40": row.quote_40_total,
+                },
+                {
+                  "portHC": row.quote_hc_total,
+                }
+              ],
+            },
+          ],
+          "buyOrSell": {
+            "freightCharges": [
+              {
+                "label": "baseRate",
+                "value": row.buyorsell_fc_baserate
+              },
+              {
+                "label": "sulphurSurcharge",
+                "value": row.buyorsell_fc_sulphursurcharge
+              }
+            ],
+            "destinationCharges": [
+              {
+                "label": "destinationTerminalHandlingCharge",
+                "value": row.buyorsell_dc_destinationterminalhandlingcharges
+              },
+            ],
+            "originCharges": [
+              {
+                "label": "exportServiceCharge",
+                "value": row.buyorsell_oc_exportservicecharge
+              },
+              {
+                "label": "destinationTerminalHandlingCharge",
+                "value": row.buyorsell_oc_destinationterminalhandlingcharges
+              },
+            ],
+          }
+        });
+      })
+      res.send(allData)
+    });
+  } catch (err) {
+    res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+  }
+}
+
+const insertQuotationCompanyDetails = async (req, res) => {
+  const {
+    id,
+    company_name,
+    company_logo,
+    quotation_number,
+    valid_from,
+    valid_to,
+    contract_number,
+    port_of_loading,
+    port_of_discharge,
+    quote_20_oceanfreight,
+    quote_40_oceanfreight,
+    quote_hc_oceanfreight,
+    quote_20_bunkeradjustmentfactor,
+    quote_40_bunkeradjustmentfactor,
+    quote_hc_bunkeradjustmentfactor,
+    quote_oc_20_originterminalhandlingcharges,
+    quote_oc_40_originterminalhandlingcharges,
+    quote_oc_hc_originterminalhandlingcharges,
+    quote_oc_20_originisps,
+    quote_oc_40_originisps,
+    quote_oc_hc_originisps,
+    quote_oc_20_sealfee,
+    quote_oc_40_sealfee,
+    quote_oc_hc_sealfee,
+    quote_dc_20_destinationterminalhandlingcharges,
+    quote_dc_40_destinationterminalhandlingcharges,
+    quote_dc_hc_destinationterminalhandlingcharges,
+    quote_dc_20_destinationisps,
+    quote_dc_40_destinationisps,
+    quote_dc_hc_destinationisps,
+    quote_20_total,
+    quote_40_total,
+    quote_hc_total,
+    buyorsell_fc_baserate,
+    buyorsell_fc_sulphursurcharge,
+    buyorsell_dc_destinationterminalhandlingcharges,
+    buyorsell_oc_exportservicecharge,
+    buyorsell_oc_destinationterminalhandlingcharges
+  } = req.body
+
+  const query = `
+        INSERT INTO quotation_company_details VALUES (
+            ${id},
+            '${company_name}',
+            '${company_logo}',
+            '${quotation_number}',
+            '${valid_from}',
+            '${valid_to}',
+            '${contract_number}',
+            '${port_of_loading}',
+            '${port_of_discharge}',
+            '${quote_20_oceanfreight}',
+            '${quote_40_oceanfreight}',
+            '${quote_hc_oceanfreight}',
+            '${quote_20_bunkeradjustmentfactor}',
+            '${quote_40_bunkeradjustmentfactor}',
+            '${quote_hc_bunkeradjustmentfactor}',
+            '${quote_oc_20_originterminalhandlingcharges}',
+            '${quote_oc_40_originterminalhandlingcharges}',
+            '${quote_oc_hc_originterminalhandlingcharges}',
+            '${quote_oc_20_originisps}',
+            '${quote_oc_40_originisps}',
+            '${quote_oc_hc_originisps}',
+            '${quote_oc_20_sealfee}',
+            '${quote_oc_40_sealfee}',
+            '${quote_oc_hc_sealfee}',
+            '${quote_dc_20_destinationterminalhandlingcharges}',
+            '${quote_dc_40_destinationterminalhandlingcharges}',
+            '${quote_dc_hc_destinationterminalhandlingcharges}',
+            '${quote_dc_20_destinationisps}',
+            '${quote_dc_40_destinationisps}',
+            '${quote_dc_hc_destinationisps}',
+            '${quote_20_total}',
+            '${quote_40_total}',
+            '${quote_hc_total}',
+            '${buyorsell_fc_baserate}',
+            '${buyorsell_fc_sulphursurcharge}',
+            '${buyorsell_dc_destinationterminalhandlingcharges}',
+            '${buyorsell_oc_exportservicecharge}',
+            '${buyorsell_oc_destinationterminalhandlingcharges}'
+            )
+    `;
+  console.log('query', query)
+  try {
+    return executeQuery(query).then((data) => {
+      res.status(OK).send("Data inserted");
+    });
+  } catch (err) {
+    res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+  }
+}
+
+const updateQuotationCompanyDetails = async (req, res) => {
+  const {
+    id,
+    company_name,
+    company_logo,
+    quotation_number,
+    valid_from,
+    valid_to,
+    contract_number,
+    port_of_loading,
+    port_of_discharge,
+    quote_20_oceanfreight,
+    quote_40_oceanfreight,
+    quote_hc_oceanfreight,
+    quote_20_bunkeradjustmentfactor,
+    quote_40_bunkeradjustmentfactor,
+    quote_hc_bunkeradjustmentfactor,
+    quote_oc_20_originterminalhandlingcharges,
+    quote_oc_40_originterminalhandlingcharges,
+    quote_oc_hc_originterminalhandlingcharges,
+    quote_oc_20_originisps,
+    quote_oc_40_originisps,
+    quote_oc_hc_originisps,
+    quote_oc_20_sealfee,
+    quote_oc_40_sealfee,
+    quote_oc_hc_sealfee,
+    quote_dc_20_destinationterminalhandlingcharges,
+    quote_dc_40_destinationterminalhandlingcharges,
+    quote_dc_hc_destinationterminalhandlingcharges,
+    quote_dc_20_destinationisps,
+    quote_dc_40_destinationisps,
+    quote_dc_hc_destinationisps,
+    quote_20_total,
+    quote_40_total,
+    quote_hc_total,
+    buyorsell_fc_baserate,
+    buyorsell_fc_sulphursurcharge,
+    buyorsell_dc_destinationterminalhandlingcharges,
+    buyorsell_oc_exportservicecharge,
+    buyorsell_oc_destinationterminalhandlingcharges
+  } = req.body
+
+  const query = `
+        UPDATE quotation_company_details SET 
+            id = ${id},
+            company_name='${company_name}',
+            company_logo='${company_logo}',
+            quotation_number='${quotation_number}',
+            valid_from='${valid_from}',
+            valid_to='${valid_to}',
+            contract_number='${contract_number}',
+            port_of_loading='${port_of_loading}',
+            port_of_discharge='${port_of_discharge}',
+            quote_20_oceanfreight='${quote_20_oceanfreight}',
+            quote_40_oceanfreight='${quote_40_oceanfreight}',
+            quote_hc_oceanfreight='${quote_hc_oceanfreight}',
+            quote_20_bunkeradjustmentfactor='${quote_20_bunkeradjustmentfactor}',
+            quote_40_bunkeradjustmentfactor='${quote_40_bunkeradjustmentfactor}',
+            quote_hc_bunkeradjustmentfactor='${quote_hc_bunkeradjustmentfactor}',
+            quote_oc_20_originterminalhandlingcharges='${quote_oc_20_originterminalhandlingcharges}',
+            quote_oc_40_originterminalhandlingcharges='${quote_oc_40_originterminalhandlingcharges}',
+            quote_oc_hc_originterminalhandlingcharges='${quote_oc_hc_originterminalhandlingcharges}',
+            quote_oc_20_originisps='${quote_oc_20_originisps}',
+            quote_oc_40_originisps='${quote_oc_40_originisps}',
+            quote_oc_hc_originisps='${quote_oc_hc_originisps}',
+            quote_oc_20_sealfee='${quote_oc_20_sealfee}',
+            quote_oc_40_sealfee='${quote_oc_40_sealfee}',
+            quote_oc_hc_sealfee='${quote_oc_hc_sealfee}',
+            quote_dc_20_destinationterminalhandlingcharges='${quote_dc_20_destinationterminalhandlingcharges}',
+            quote_dc_40_destinationterminalhandlingcharges='${quote_dc_40_destinationterminalhandlingcharges}',
+            quote_dc_hc_destinationterminalhandlingcharges='${quote_dc_hc_destinationterminalhandlingcharges}',
+            quote_dc_20_destinationisps='${quote_dc_20_destinationisps}',
+            quote_dc_40_destinationisps='${quote_dc_40_destinationisps}',
+            quote_dc_hc_destinationisps='${quote_dc_hc_destinationisps}',
+            quote_20_total='${quote_20_total}',
+            quote_40_total='${quote_40_total}',
+            quote_hc_total='${quote_hc_total}',
+            buyorsell_fc_baserate='${buyorsell_fc_baserate}',
+            buyorsell_fc_sulphursurcharge='${buyorsell_fc_sulphursurcharge}',
+            buyorsell_dc_destinationterminalhandlingcharges='${buyorsell_dc_destinationterminalhandlingcharges}',
+            buyorsell_oc_exportservicecharge='${buyorsell_oc_exportservicecharge}',
+            buyorsell_oc_destinationterminalhandlingcharges='${buyorsell_oc_destinationterminalhandlingcharges}'
+            WHERE id=${id}
+    `;
+  console.log('query', query)
+  try {
+    return executeQuery(query).then((data) => {
+      res.status(OK).send("Data updated");
+    });
+  } catch (err) {
+    res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+  }
+}
+
 module.exports = {
   getDataFromExcelSheet,
   createQuotation,
   fetchQuotationById,
   updateQuotation,
   fetchQuotation,
-  onLoadQuotations
+  onLoadQuotations,
+  quotationCompanyDetails,
+  insertQuotationCompanyDetails,
+  updateQuotationCompanyDetails
 }

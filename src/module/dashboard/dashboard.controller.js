@@ -12,6 +12,23 @@ const createQuotation = (req, res) => {
     dashboardService.createQuotation(req, res).then((response) => res.send(response));
 }
 
+const quotationCompanyDetails = (req, res) => {
+    logger.info(`Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    dashboardService.quotationCompanyDetails(req, res)
+}
+
+const insertQuotationCompanyDetails = (req, res) => {
+    logger.info(`Insert Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    dashboardService.insertQuotationCompanyDetails(req, res)
+}
+const updateQuotationCompanyDetails = (req, res) => {
+    logger.info(`Update Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
+    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
+    dashboardService.updateQuotationCompanyDetails(req, res)
+}
+
 const fetchQuotation = (req, res) => {
     logger.info(`fetchQuotation : ${JSON.stringify(req.body)}`)
     dashboardService.fetchQuotation(req, res).then((response) => res.send(response));
@@ -38,5 +55,8 @@ module.exports = {
     fetchQuotation,
     fetchQuotationById,
     updateQuotation,
-    onLoadQuotations
+    onLoadQuotations,
+    quotationCompanyDetails,
+    updateQuotationCompanyDetails,
+    insertQuotationCompanyDetails
 };
