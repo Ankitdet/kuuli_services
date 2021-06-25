@@ -4,7 +4,7 @@ const { parse } = require('pg-connection-string')
 const config = parse(process.env.DATABASE_URL)
 
 config.ssl = {
-	rejectUnauthorized: false
+  rejectUnauthorized: false
 }
 const pool = new Pool(config)
 
@@ -316,46 +316,46 @@ CREATE TABLE IF NOT EXISTS "quotation_company_details" (
 	"contract_number" VARCHAR(500),
 	"port_of_loading" VARCHAR(500),
 	"port_of_discharge" VARCHAR(500),
-	"quote_20_oceanFreight" VARCHAR(500),
-	"quote_40_oceanFreight" VARCHAR(500),
-	"quote_HC_oceanFreight" VARCHAR(500),
-	"quote_20_bunkerAdjustmentFactor" VARCHAR(500),
-	"quote_40_bunkerAdjustmentFactor" VARCHAR(500),
-	"quote_HC_bunkerAdjustmentFactor" VARCHAR(500),
-	"quote_oc_20_originTerminalHandlingCharges" VARCHAR(500),
-	"quote_oc_40_originTerminalHandlingCharges" VARCHAR(500),
-	"quote_oc_HC_originTerminalHandlingCharges" VARCHAR(500),
-	"quote_oc_20_originISPS" VARCHAR(500),
-	"quote_oc_40_originISPS" VARCHAR(500),
-	"quote_oc_HC_originISPS" VARCHAR(500),
-	"quote_oc_20_sealFee" VARCHAR(500),
-	"quote_oc_40_sealFee" VARCHAR(500),
-	"quote_oc_HC_sealFee" VARCHAR(500),
-	"quote_dc_20_destinationTerminalHandlingCharges" VARCHAR(500),
-	"quote_dc_40_destinationTerminalHandlingCharges" VARCHAR(500),
-	"quote_dc_HC_destinationTerminalHandlingCharges" VARCHAR(500),
-	"quote_dc_20_destinationISPS" VARCHAR(500),
-	"quote_dc_40_destinationISPS" VARCHAR(500),
-	"quote_dc_HC_destinationISPS" VARCHAR(500),
+	"quote_20_oceanfreight" VARCHAR(500),
+	"quote_40_oceanfreight" VARCHAR(500),
+	"quote_hc_oceanfreight" VARCHAR(500),
+	"quote_20_bunkeradjustmentfactor" VARCHAR(500),
+	"quote_40_bunkeradjustmentfactor" VARCHAR(500),
+	"quote_hc_bunkeradjustmentfactor" VARCHAR(500),
+	"quote_oc_20_originterminalhandlingcharges" VARCHAR(500),
+	"quote_oc_40_originterminalhandlingcharges" VARCHAR(500),
+	"quote_oc_hc_originterminalhandlingcharges" VARCHAR(500),
+	"quote_oc_20_originisps" VARCHAR(500),
+	"quote_oc_40_originisps" VARCHAR(500),
+	"quote_oc_hc_originisps" VARCHAR(500),
+	"quote_oc_20_sealfee" VARCHAR(500),
+	"quote_oc_40_sealfee" VARCHAR(500),
+	"quote_oc_hc_sealfee" VARCHAR(500),
+	"quote_dc_20_destinationterminalhandlingcharges" VARCHAR(500),
+	"quote_dc_40_destinationterminalhandlingcharges" VARCHAR(500),
+	"quote_dc_hc_destinationterminalhandlingcharges" VARCHAR(500),
+	"quote_dc_20_destinationisps" VARCHAR(500),
+	"quote_dc_40_destinationisps" VARCHAR(500),
+	"quote_dc_hc_destinationisps" VARCHAR(500),
 	"quote_20_total" VARCHAR(500),
 	"quote_40_total" VARCHAR(500),
-	"quote_HC_total" VARCHAR(500),
-	"buyOrSell_fc_baseRate" VARCHAR(500),
-	"buyOrSell_fc_sulphurSurcharge" VARCHAR(500),
-	"buyOrSell_dc_destinationTerminalHandlingCharges" VARCHAR(500),
-	"buyOrSell_oc_exportServiceCharge" VARCHAR(500),
-	"buyOrSell_oc_destinationTerminalHandlingCharges" VARCHAR(500),
+	"quote_hc_total" VARCHAR(500),
+	"buyorsell_fc_baserate" VARCHAR(500),
+	"buyorsell_fc_sulphursurcharge" VARCHAR(500),
+	"buyorsell_dc_destinationterminalhandlingcharges" VARCHAR(500),
+	"buyorsell_oc_exportservicecharge" VARCHAR(500),
+	"buyorsell_oc_destinationterminalhandlingcharges" VARCHAR(500),
 	PRIMARY KEY("id")
 );
 `
 
 
 pool.connect((err, client, done) => {
-	client.query(query, (err, res) => {
-		console.log(err, res)
-		client.end()
-		console.log('Table Created Successfully.');
-	});
+  client.query(query, (err, res) => {
+    console.log(err, res)
+    client.end()
+    console.log('Table Created Successfully.');
+  });
 });
 
 module.exports = pool;
