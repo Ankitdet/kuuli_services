@@ -13,20 +13,17 @@ const createQuotation = (req, res) => {
 }
 
 const quotationCompanyDetails = (req, res) => {
-    logger.info(`Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
-    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
-    dashboardService.quotationCompanyDetails(req, res)
+    logger.info(`Quoation Company Details Page API called`)
+    dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
 }
 
 const insertQuotationCompanyDetails = (req, res) => {
     logger.info(`Insert Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
-    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
-    dashboardService.insertQuotationCompanyDetails(req, res)
+    dashboardService.insertQuotationCompanyDetails(req, res).then((response) => res.send(response))
 }
 const updateQuotationCompanyDetails = (req, res) => {
     logger.info(`Update Quoation Company Details Page API called. ${JSON.stringify(req.body)}`)
-    // dashboardService.quotationCompanyDetails(req, res).then((response) => res.send(response))
-    dashboardService.updateQuotationCompanyDetails(req, res)
+    dashboardService.updateQuotationCompanyDetails(req, res).then((response) => res.send(response))
 }
 
 const fetchQuotation = (req, res) => {
