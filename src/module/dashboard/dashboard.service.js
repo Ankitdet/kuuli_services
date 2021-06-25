@@ -567,8 +567,8 @@ const insertQuotationCompanyDetails = async (req, res) => {
 }
 
 const updateQuotationCompanyDetails = async (req, res) => {
+  const id = req.params.id;
   const {
-    id,
     company_name,
     company_logo,
     quotation_number,
@@ -609,8 +609,7 @@ const updateQuotationCompanyDetails = async (req, res) => {
   } = req.body
 
   const query = `
-        UPDATE quotation_company_details SET 
-            id = ${id},
+        UPDATE quotation_company_details SET             
             company_name='${company_name}',
             company_logo='${company_logo}',
             quotation_number='${quotation_number}',

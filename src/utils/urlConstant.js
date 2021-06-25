@@ -10,10 +10,10 @@ module.exports.allowcationBasePath = "/allocation/v1";
 module.exports.createForecast = "/forecast/create";
 module.exports.createCarrier = "";
 
-// Create Carrier allocation new 
+// Create Carrier allocation new
 module.exports.carrierAllocation = "/carrier/create";
 
-// Update target values 
+// Update target values
 module.exports.updateTargetValues = "/carrier/update";
 
 // Define Target Values
@@ -39,7 +39,7 @@ module.exports.QuotationUpdateBasePath = "/quotation/update"
 module.exports.OnLoadQoutation = "/quotation/on-load"
 module.exports.quotationCompanyDetails = "/quotation-details";
 module.exports.insertQuotationCompanyDetails = "/insert-quotation-details";
-module.exports.updateQuotationCompanyDetails = "/update-quotation-details";
+module.exports.updateQuotationCompanyDetails = "/update-quotation-details/:id";
 
 // Customer module endpoint
 module.exports.customerbaseUrl = "/customer/v1"
