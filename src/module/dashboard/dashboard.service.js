@@ -556,7 +556,6 @@ const insertQuotationCompanyDetails = async (req, res) => {
             '${buyorsell_oc_destinationterminalhandlingcharges}'
             )
     `;
-  console.log('query', query)
   try {
     return executeQuery(query).then((data) => {
       res.status(OK).send("Data inserted");
@@ -568,7 +567,7 @@ const insertQuotationCompanyDetails = async (req, res) => {
 
 const updateQuotationCompanyDetails = async (req, res) => {
   const id = req.params.id;
-  const {
+  let {
     company_name,
     company_logo,
     quotation_number,
@@ -605,9 +604,13 @@ const updateQuotationCompanyDetails = async (req, res) => {
     buyorsell_fc_sulphursurcharge,
     buyorsell_dc_destinationterminalhandlingcharges,
     buyorsell_oc_exportservicecharge,
-    buyorsell_oc_destinationterminalhandlingcharges
+    buyorsell_oc_destinationterminalhandlingcharges,
+    add_charges,
+    add_margin
   } = req.body
 
+  add_charges = JSON.stringify(add_charges)
+  add_margin = JSON.stringify(add_margin)
   const query = `
         UPDATE quotation_company_details SET             
             company_name='${company_name}',
@@ -646,10 +649,11 @@ const updateQuotationCompanyDetails = async (req, res) => {
             buyorsell_fc_sulphursurcharge='${buyorsell_fc_sulphursurcharge}',
             buyorsell_dc_destinationterminalhandlingcharges='${buyorsell_dc_destinationterminalhandlingcharges}',
             buyorsell_oc_exportservicecharge='${buyorsell_oc_exportservicecharge}',
-            buyorsell_oc_destinationterminalhandlingcharges='${buyorsell_oc_destinationterminalhandlingcharges}'
+            buyorsell_oc_destinationterminalhandlingcharges='${buyorsell_oc_destinationterminalhandlingcharges}',
+            add_margin='${add_margin}',
+            add_charges='${add_charges}'
             WHERE id=${id}
     `;
-  console.log('query', query)
   try {
     return executeQuery(query).then((data) => {
       res.status(OK).send("Data updated");

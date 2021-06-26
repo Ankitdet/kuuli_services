@@ -32,6 +32,9 @@ ALTER TABLE quotation ADD  IF NOT EXISTS  customer_id VARCHAR(100) DEFAULT NULL;
 ALTER TABLE quotation ALTER COLUMN cargo_ready_date TYPE VARCHAR;
 ALTER TABLE quotation ALTER COLUMN cargo_ready_date  SET DEFAULT NULL;
 
+ALTER TABLE quotation_company_details ADD COLUMN add_charges text DEFAULT NULL;
+ALTER TABLE quotation_company_details ADD COLUMN add_margin text DEFAULT NULL;
+
 
 DO $$
 BEGIN
