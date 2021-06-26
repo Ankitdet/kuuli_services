@@ -21,11 +21,13 @@ const onLoadCarrierAllocation = (req, res) => {
     logger.info(`OnLoad Carrier Allocation Page API called. ${JSON.stringify(req.body)}`)
     allocationService.onLoadCarrierAllocation(req, res).then((response) => res.send(response))
 }
-
-
 const updateTargetValues = (req, res) => {
     logger.info(`Update target values of Carrier allocation ${JSON.stringify(req.body)}`)
     allocationService.updateTargetValues(req, res).then((response) => res.send(response))
+}
+const fetchWeek = (req, res) => {
+    logger.info(`Fetchweek Page API called. ${JSON.stringify(req.body)}`)
+    allocationService.fetchWeek(req, res).then((response) => res.send(response))
 }
 const downloadExcel = (req, res) => {
     logger.info(`Download excel aPI call.`);
@@ -38,5 +40,6 @@ module.exports = {
     carrierAllocationNewDefineTargetValues,
     onLoadCarrierAllocation,
     updateTargetValues,
+    fetchWeek,
     downloadExcel,
 };

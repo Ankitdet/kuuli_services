@@ -304,10 +304,82 @@ const updateTargetValues = async (req, res) => {
     }
 }
 
+const fetchWeek = async (req, res) => {    
+
+    let query="select * from carrier_allocation_new";    
+    const weeks=[]
+    try {
+        return executeQuery(query).then((data) => {
+            data.rows.forEach(row=>{
+                weeks.push({
+                    id:row.ca_id,
+                    week_01:row.week_1,
+                    week_02:row.week_2,
+                    week_03:row.week_3,
+                    week_04:row.week_4,
+                    week_05:row.week_5,
+                    week_06:row.week_6,
+                    week_07:row.week_7,
+                    week_08:row.week_8,
+                    week_09:row.week_9,
+                    week_10:row.week_10,
+                    week_11:row.week_11,
+                    week_12:row.week_12,
+                    week_13:row.week_13,
+                    week_14:row.week_14,
+                    week_15:row.week_15,
+                    week_16:row.week_16,
+                    week_17:row.week_17,
+                    week_18:row.week_18,
+                    week_19:row.week_19,
+                    week_20:row.week_20,
+                    week_21:row.week_21,
+                    week_22:row.week_22,
+                    week_23:row.week_23,
+                    week_24:row.week_24,
+                    week_25:row.week_25,
+                    week_26:row.week_26,
+                    week_27:row.week_27,
+                    week_28:row.week_28,
+                    week_29:row.week_29,
+                    week_30:row.week_30,
+                    week_31:row.week_31,
+                    week_32:row.week_32,
+                    week_33:row.week_33,
+                    week_34:row.week_34,
+                    week_35:row.week_35,
+                    week_36:row.week_36,
+                    week_37:row.week_37,
+                    week_38:row.week_38,
+                    week_39:row.week_39,
+                    week_40:row.week_40,
+                    week_41:row.week_41,
+                    week_42:row.week_42,
+                    week_43:row.week_43,
+                    week_44:row.week_44,
+                    week_45:row.week_45,
+                    week_46:row.week_46,
+                    week_47:row.week_47,
+                    week_48:row.week_48,
+                    week_49:row.week_49,
+                    week_50:row.week_50,
+                    week_51:row.week_51,
+                    week_52:row.week_52,
+                })                
+            })     
+            res.send(weeks)       
+        });        
+    } catch (err) {
+        res.status(INTERNAL_SERVER_ERROR).send({ message: err });
+    }
+}
+   
+
 module.exports = {
     carrierAllocationNew,
     fetchAllCarrierAllocation,
     onLoadCarrierAllocation,
     updateTargetValues,
     downloadExcel,
+    fetchWeek
 };

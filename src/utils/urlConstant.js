@@ -27,6 +27,7 @@ module.exports.fetchCarrierAllocation = "/carrier/fetch";
 
 // On load carrier allocation page
 module.exports.onLoadCarrierAllocation = "/carrier/onload";
+module.exports.fetchWeek="/fetch-weeks";
 
 module.exports.downloadExcelPath = "/carrier/download";
 
