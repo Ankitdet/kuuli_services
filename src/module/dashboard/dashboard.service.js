@@ -463,6 +463,8 @@ const quotationCompanyDetails = async (req, res) => {
                 "value": row.buyorsell_oc_destinationterminalhandlingcharges
               },
             ],
+            "add_charges": JSON.parse(row.add_charges),
+            "add_margin": JSON.parse(row.add_margin)
           }
         });
       })
@@ -474,7 +476,7 @@ const quotationCompanyDetails = async (req, res) => {
 }
 
 const insertQuotationCompanyDetails = async (req, res) => {
-  const {
+  let {
     company_name,
     company_logo,
     quotation_number,
@@ -511,8 +513,13 @@ const insertQuotationCompanyDetails = async (req, res) => {
     buyorsell_fc_sulphursurcharge,
     buyorsell_dc_destinationterminalhandlingcharges,
     buyorsell_oc_exportservicecharge,
-    buyorsell_oc_destinationterminalhandlingcharges
+    buyorsell_oc_destinationterminalhandlingcharges,
+    add_charges,
+    add_margin
   } = req.body
+
+  add_charges = JSON.stringify(add_charges)
+  add_margin = JSON.stringify(add_margin)
 
   const query = `
         INSERT INTO quotation_company_details VALUES (
@@ -553,7 +560,9 @@ const insertQuotationCompanyDetails = async (req, res) => {
             '${buyorsell_fc_sulphursurcharge}',
             '${buyorsell_dc_destinationterminalhandlingcharges}',
             '${buyorsell_oc_exportservicecharge}',
-            '${buyorsell_oc_destinationterminalhandlingcharges}'
+            '${buyorsell_oc_destinationterminalhandlingcharges}',
+            '${add_charges}',
+            '${add_margin}'
             )
     `;
   try {
