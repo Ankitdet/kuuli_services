@@ -198,11 +198,6 @@ const onLoadCarrierAllocation = async (req, res) => {
                 }
             })
 
-
-            contractNumber = contractNumber.filter(function(item, pos) {
-                return contractNumber.indexOf(item.label) == pos;
-            })
-
             const json = {
                 "type": [
                     {
