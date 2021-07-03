@@ -147,7 +147,7 @@ const onLoadCarrierAllocation = async (req, res) => {
     const query = `select * from onload_ca;`;
     let carrierName = [];
     let service = [];
-    let prefferedSupplier = [];
+    let contractNumber = [];
     let ports = [];
     let contactType = [];
     let containerType = [];
@@ -156,18 +156,15 @@ const onLoadCarrierAllocation = async (req, res) => {
         return executeQuery(query).then((data) => {
             console.log(data);
 
-            prefferedSupplier.push({
-                label: 'Core',
-                value: 'Core'
-            }, {
-                label: 'Non core',
-                value: 'Non Core'
-            })
-
-
 
             data.rows.forEach((ca) => {
 
+                if (ca.contract_number !== '') {
+                    contractNumber.push({
+                        label: ca.contract_number,
+                        value: ca.contract_number
+                    })
+                }
                 if (ca.carrier_name !== '') {
                     carrierName.push({
                         label: ca.carrier_name,
@@ -201,6 +198,11 @@ const onLoadCarrierAllocation = async (req, res) => {
                 }
             })
 
+
+            contractNumber = contractNumber.filter(function(item, pos) {
+                return contractNumber.indexOf(item.label) == pos;
+            })
+
             const json = {
                 "type": [
                     {
@@ -213,7 +215,7 @@ const onLoadCarrierAllocation = async (req, res) => {
                     }
 
                 ],
-                "preferredSupplier": prefferedSupplier,
+                "preferredSupplier": contractNumber,
                 "carrierName": carrierName,
                 "service": service,
                 "portOfLoading": ports,
